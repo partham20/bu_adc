@@ -1,0 +1,8 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+USER_OBJS :=
+
+LIBS := -l"D:/GIT\ part/Bu\ Board\ -\ CALB/pdu-3-monorepo/bu_board/flashapi_128bit_programming/FAPI_F28P55x_EABI_v4.00.00.lib" -lc2000ware_libraries.cmd.genlibs -llibc.a
+

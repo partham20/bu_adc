@@ -1,0 +1,56 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+SHELL = cmd.exe
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CMD_SRCS += \
+../28p55x_generic_ram_lnk.cmd 
+
+SYSCFG_SRCS += \
+../adc_ex2_soc_epwm.syscfg 
+
+LIB_SRCS += \
+C:/ti/ccs1281/ccs/eclipse/COM_TI_C2000WARE_INSTALL_DIR/driverlib/f28p55x/driverlib/ccs/Debug/driverlib.lib 
+
+C_SRCS += \
+../adc_ex2_soc_epwm.c \
+../dww_power.c 
+
+GEN_MISC_DIRS += \
+./syscfg 
+
+C_DEPS += \
+./adc_ex2_soc_epwm.d \
+./dww_power.d 
+
+OBJS += \
+./adc_ex2_soc_epwm.obj \
+./dww_power.obj 
+
+GEN_MISC_FILES += \
+./syscfg/error.h 
+
+GEN_MISC_DIRS__QUOTED += \
+"syscfg" 
+
+OBJS__QUOTED += \
+"adc_ex2_soc_epwm.obj" \
+"dww_power.obj" 
+
+GEN_MISC_FILES__QUOTED += \
+"syscfg\error.h" 
+
+C_DEPS__QUOTED += \
+"adc_ex2_soc_epwm.d" \
+"dww_power.d" 
+
+C_SRCS__QUOTED += \
+"../adc_ex2_soc_epwm.c" \
+"../dww_power.c" 
+
+SYSCFG_SRCS__QUOTED += \
+"../adc_ex2_soc_epwm.syscfg" 
+
+

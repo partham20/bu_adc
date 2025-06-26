@@ -1,0 +1,61 @@
+#ifndef BU_ADC_H
+#define BU_ADC_H
+
+//
+// Included Files
+//
+#include "driverlib.h"
+#include "device.h"
+#include "board.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "dww_parameter.h"
+
+//
+// Defines
+//
+#define NUM_CHANNELS            18
+#define SAMPLE_COUNT_THRESHOLD  100
+#define DEVICE_GPIO_PIN_LED1        29U             // GPIO number for LED1
+#define DEVICE_GPIO_CFG_LED1        GPIO_29_GPIO29  // "pinConfig" for LED1
+
+//
+// Global variables
+//
+extern uint32_t myADC0Results[NUM_CHANNELS];
+extern unsigned long dwSumPhaseVolt[NUM_CHANNELS];
+extern unsigned int sampleCount;
+extern float calib;
+extern DWW_CHANNEL_PARAMETER Branch;
+extern unsigned int struct_size;
+extern unsigned long dwwMathBuff;
+extern unsigned int max_curr;
+extern unsigned int demand_chk_1sec, demand_chk_1hr, demand_chk_24hr;
+extern unsigned int wDemandSumCntr[4];
+extern unsigned long dw_CurrDemandSum[NUM_CHANNELS];
+extern dww_structflag *sFlag;
+extern unsigned int adcAResult[NUM_CHANNELS];
+extern unsigned int dww_RMS_Current;
+extern unsigned int count;
+extern int root;
+extern int pinstate;
+extern volatile bool syncSignalReceived;
+extern uint16_t pinState;
+extern int a;
+
+//
+// Function Prototypes
+//
+void initEPWM(void);
+void dww_Loadper_Calc(void);
+void dww_max_min_Calc(void);
+void dww_timer(void);
+void dww_demand_Calc(void);
+void configureGPIO28(void);
+uint32_t readGPIO28(void);
+__interrupt void gpioISR(void);
+__interrupt void adcA1ISR(void);
+void main(void);
+
+#endif // BU_ADC_H
