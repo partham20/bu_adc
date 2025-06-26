@@ -113,6 +113,9 @@ __interrupt void adcA1ISR(void)
         ADC_clearInterruptStatus(myADC1_BASE, ADC_INT_NUMBER1);
     }
 
+    // Clear the ePWM SOCA flag to allow future triggers
+    EPWM_clearEventTriggerFlag(EPWM1_BASE, EPWM_FLAG_SOCA);
+
     // Acknowledge the interrupt to the PIE
     Interrupt_clearACKGroup(INT_myADC0_1_INTERRUPT_ACK_GROUP);
 }
