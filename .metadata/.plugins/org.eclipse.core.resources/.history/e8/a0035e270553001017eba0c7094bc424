@@ -1,0 +1,145 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" --product "C2000WARE@5.03.00.00"
+ * @v2CliArgs --device "TMS320F28P550SG" --package "128PDT" --variant "TMS320F28P550SG9" --context "system" --product "C2000WARE@5.03.00.00"
+ * @versions {"tool":"1.21.0+3721"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const adc2    = adc.addInstance();
+const analog  = scripting.addModule("/driverlib/analog.js", {}, false);
+const analog1 = analog.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                    = "myADC0";
+adc1.adcClockPrescaler        = "ADC_CLK_DIV_2_0";
+adc1.interruptPulseMode       = "ADC_PULSE_END_OF_CONV";
+adc1.soc0Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc0SampleWindow         = 10;
+adc1.enabledInts              = ["ADC_INT_NUMBER1"];
+adc1.enableInterrupt1         = true;
+adc1.registerInterrupts       = ["1"];
+adc1.soc0Channel              = "ADC_CH_ADCIN6";
+adc1.soc1SampleWindow         = 10;
+adc1.soc1Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc1Channel              = "ADC_CH_ADCIN3";
+adc1.soc2Channel              = "ADC_CH_ADCIN2";
+adc1.soc2SampleWindow         = 10;
+adc1.soc2Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc3Channel              = "ADC_CH_ADCIN15";
+adc1.soc3SampleWindow         = 10;
+adc1.soc3Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc4Channel              = "ADC_CH_ADCIN14";
+adc1.soc4SampleWindow         = 10;
+adc1.soc4Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc5Channel              = "ADC_CH_ADCIN11";
+adc1.soc5SampleWindow         = 10;
+adc1.soc5Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc6Channel              = "ADC_CH_ADCIN5";
+adc1.soc6SampleWindow         = 10;
+adc1.soc6Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc7Channel              = "ADC_CH_ADCIN1";
+adc1.soc7SampleWindow         = 10;
+adc1.soc7Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc8Channel              = "ADC_CH_ADCIN12";
+adc1.soc8SampleWindow         = 10;
+adc1.soc8Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc9Channel              = "ADC_CH_ADCIN7";
+adc1.soc9Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc9SampleWindow         = 10;
+adc1.soc10Channel             = "ADC_CH_ADCIN8";
+adc1.soc10SampleWindow        = 10;
+adc1.soc10Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc11Channel             = "ADC_CH_ADCIN4";
+adc1.soc11SampleWindow        = 10;
+adc1.soc11Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc12Channel             = "ADC_CH_ADCIN9";
+adc1.soc12SampleWindow        = 10;
+adc1.soc12Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc13SampleWindow        = 10;
+adc1.soc13Trigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.enabledSOCs              = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1","ADC_SOC_NUMBER10","ADC_SOC_NUMBER11","ADC_SOC_NUMBER12","ADC_SOC_NUMBER13","ADC_SOC_NUMBER2","ADC_SOC_NUMBER3","ADC_SOC_NUMBER4","ADC_SOC_NUMBER5","ADC_SOC_NUMBER6","ADC_SOC_NUMBER7","ADC_SOC_NUMBER8","ADC_SOC_NUMBER9"];
+adc1.soc13Channel             = "ADC_CH_ADCIN25";
+adc1.adcInt1.enableInterrupt  = true;
+adc1.adcInt1.interruptHandler = "adcA1ISR";
+
+adc2.$name              = "myADC1";
+adc2.adcBase            = "ADCE_BASE";
+adc2.soc0SampleWindow   = 10;
+adc2.soc0Trigger        = "ADC_TRIGGER_EPWM1_SOCA";
+adc2.adcClockPrescaler  = "ADC_CLK_DIV_2_0";
+adc2.interruptPulseMode = "ADC_PULSE_END_OF_CONV";
+adc2.enabledInts        = ["ADC_INT_NUMBER1"];
+adc2.enableInterrupt1   = true;
+adc2.soc0Channel        = "ADC_CH_ADCIN1";
+adc2.soc1Channel        = "ADC_CH_ADCIN2";
+adc2.soc1Trigger        = "ADC_TRIGGER_EPWM1_SOCA";
+adc2.soc1SampleWindow   = 10;
+adc2.soc2Channel        = "ADC_CH_ADCIN12";
+adc2.soc2SampleWindow   = 10;
+adc2.soc2Trigger        = "ADC_TRIGGER_EPWM1_SOCA";
+adc2.enabledSOCs        = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1","ADC_SOC_NUMBER2","ADC_SOC_NUMBER3"];
+adc2.soc3SampleWindow   = 10;
+adc2.soc3Trigger        = "ADC_TRIGGER_EPWM1_SOCA";
+
+analog1.$name            = "myANALOGPinMux0";
+adc1.analog              = analog1;
+adc2.analog              = analog1;
+analog1.useCase          = "CUSTOM";
+analog1.useInterfacePins = ["A0, B15, C15, DACA_OUT","A1, B7, D11, CMP1_DACL","A10, B1, C10, GPIO230","A11, B10, C0, PGA2_OUT","A12, C1, E11, PGA3_INP","A13, B13, C13, D13, E13, VREFLO","A14, B14, C4, PGA1_OUT","A15, B9, C7, PGA1_INM","A17, B17, C17, GPIO20","A18, B18, C18, GPIO21","A19, B19, C19, GPIO13","A2, B6, C9, PGA1_INP, GPIO224","A20, B20, C20, GPIO12","A24, D0, E0, GPIO11","A25, D3, E3, GPIO17","A26, D6, E6","A27, D9, E9, GPIO212","A28, D19, E19, GPIO215","A3, B3, PGA2_INP, C5, GPIO242","A4, B8, C14","A5, B12, C2, PGA2_INM","A6, D14, E14, GPIO228","A7, B30, C3, D12, E30","A8, B0, C11","A9, GPIO227","B11, D16, E16, PGA3_INM","B2, C6, E12, GPIO226","B24, D1, E1, GPIO33","B25, D4, E4, GPIO24","B26, D7, E7","B27, D10, E10, GPIO213","B4, C8, GPIO236","B5, D15, E15, PGA3_OUT","C24, D2, E2, GPIO16","C25, D5, E5","C26, D8, E8, GPIO211","C27, D18, E18, GPIO214","D20, E20, VREFHI"];
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+analog1.analog.$suggestSolution                                       = "ANALOG";
+analog1.analog["a0, b15, c15, daca_outPin"].$suggestSolution          = "A0, B15, C15, DACA_OUT";
+analog1.analog["a2, b6, c9, pga1_inp, gpio224Pin"].$suggestSolution   = "A2, B6, C9, PGA1_INP, GPIO224";
+analog1.analog["a3, b3, pga2_inp, c5, gpio242Pin"].$suggestSolution   = "A3, B3, PGA2_INP, C5, GPIO242";
+analog1.analog["a4, b8, c14Pin"].$suggestSolution                     = "A4, B8, C14";
+analog1.analog["a5, b12, c2, pga2_inmPin"].$suggestSolution           = "A5, B12, C2, PGA2_INM";
+analog1.analog["a6, d14, e14, gpio228Pin"].$suggestSolution           = "A6, D14, E14, GPIO228";
+analog1.analog["a7, b30, c3, d12, e30Pin"].$suggestSolution           = "A7, B30, C3, D12, E30";
+analog1.analog["a8, b0, c11Pin"].$suggestSolution                     = "A8, B0, C11";
+analog1.analog["a9, gpio227Pin"].$suggestSolution                     = "A9, GPIO227";
+analog1.analog["a10, b1, c10, gpio230Pin"].$suggestSolution           = "A10, B1, C10, GPIO230";
+analog1.analog["a11, b10, c0, pga2_outPin"].$suggestSolution          = "A11, B10, C0, PGA2_OUT";
+analog1.analog["a12, c1, e11, pga3_inpPin"].$suggestSolution          = "A12, C1, E11, PGA3_INP";
+analog1.analog["a14, b14, c4, pga1_outPin"].$suggestSolution          = "A14, B14, C4, PGA1_OUT";
+analog1.analog["a15, b9, c7, pga1_inmPin"].$suggestSolution           = "A15, B9, C7, PGA1_INM";
+analog1.analog["a17, b17, c17, gpio20Pin"].$suggestSolution           = "A17, B17, C17, GPIO20";
+analog1.analog["a18, b18, c18, gpio21Pin"].$suggestSolution           = "A18, B18, C18, GPIO21";
+analog1.analog["a19, b19, c19, gpio13Pin"].$suggestSolution           = "A19, B19, C19, GPIO13";
+analog1.analog["a20, b20, c20, gpio12Pin"].$suggestSolution           = "A20, B20, C20, GPIO12";
+analog1.analog["a24, d0, e0, gpio11Pin"].$suggestSolution             = "A24, D0, E0, GPIO11";
+analog1.analog["a25, d3, e3, gpio17Pin"].$suggestSolution             = "A25, D3, E3, GPIO17";
+analog1.analog["a26, d6, e6Pin"].$suggestSolution                     = "A26, D6, E6";
+analog1.analog["a27, d9, e9, gpio212Pin"].$suggestSolution            = "A27, D9, E9, GPIO212";
+analog1.analog["a28, d19, e19, gpio215Pin"].$suggestSolution          = "A28, D19, E19, GPIO215";
+analog1.analog["b2, c6, e12, gpio226Pin"].$suggestSolution            = "B2, C6, E12, GPIO226";
+analog1.analog["b4, c8, gpio236Pin"].$suggestSolution                 = "B4, C8, GPIO236";
+analog1.analog["b5, d15, e15, pga3_outPin"].$suggestSolution          = "B5, D15, E15, PGA3_OUT";
+analog1.analog["b11, d16, e16, pga3_inmPin"].$suggestSolution         = "B11, D16, E16, PGA3_INM";
+analog1.analog["b24, d1, e1, gpio33Pin"].$suggestSolution             = "B24, D1, E1, GPIO33";
+analog1.analog["b25, d4, e4, gpio24Pin"].$suggestSolution             = "B25, D4, E4, GPIO24";
+analog1.analog["b26, d7, e7Pin"].$suggestSolution                     = "B26, D7, E7";
+analog1.analog["b27, d10, e10, gpio213Pin"].$suggestSolution          = "B27, D10, E10, GPIO213";
+analog1.analog["c24, d2, e2, gpio16Pin"].$suggestSolution             = "C24, D2, E2, GPIO16";
+analog1.analog["c25, d5, e5Pin"].$suggestSolution                     = "C25, D5, E5";
+analog1.analog["c26, d8, e8, gpio211Pin"].$suggestSolution            = "C26, D8, E8, GPIO211";
+analog1.analog["c27, d18, e18, gpio214Pin"].$suggestSolution          = "C27, D18, E18, GPIO214";
+analog1.analog["d20, e20, vrefhiPin"].$suggestSolution                = "D20, E20, VREFHI";
+analog1.analog["a13, b13, c13, d13, e13, vrefloPin"].$suggestSolution = "A13, B13, C13, D13, E13, VREFLO";
+analog1.analog["a1, b7, d11, cmp1_daclPin"].$suggestSolution          = "A1, B7, D11, CMP1_DACL";

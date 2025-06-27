@@ -117,9 +117,16 @@ board_module.obj: ../can_module.h
 board_module.obj: ../runtime.h
 board_module.obj: ../timer_module.h
 board_module.obj: ../flash_module.h
-board_module.obj: ../bu_adc.h
+board_module.obj: ../s_board_adc.h
+board_module.obj: syscfg/board.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdio.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdarg.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdlib.h
+board_module.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdlibf.h
 board_module.obj: ../dww_parameter.h
-board_module.obj: ../CPU1_FLASH/syscfg/board.h
 
 ../board_module.c:
 
@@ -355,9 +362,23 @@ C:/ti/c2000/C2000Ware_5_03_00_00/driverlib/f28p55x/driverlib/inc/stw_dataTypes.h
 
 ../flash_module.h:
 
-../bu_adc.h:
+../s_board_adc.h:
+
+syscfg/board.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdio.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdarg.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdlib.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/stdlibf.h:
 
 ../dww_parameter.h:
-
-../CPU1_FLASH/syscfg/board.h:
 

@@ -1,0 +1,18 @@
+#ifndef BU_ADC_H
+#define BU_ADC_H
+
+#include "driverlib.h"
+#include "device.h"
+#include "dww_parameter.h"
+
+#define NUM_CHANNELS 18
+
+// Globals
+extern volatile DWW_CHANNEL_PARAMETER Branch;
+extern int m;
+
+// Function Prototypes
+void initEPWM(void);
+__interrupt void adcA1ISR(void);
+
+#endif // BU_ADC_H

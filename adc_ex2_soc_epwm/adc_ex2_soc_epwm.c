@@ -6,7 +6,7 @@
 #include "board_module.h"
 #include "utilities.h"
 #include "runtime.h"
-#include "bu_adc.h"
+#include "s_board_adc.h"
 
 // Define global variables
 PDUDataManager pduManager;
@@ -57,6 +57,8 @@ void main(void)
     // Initialize device hardware and peripherals
     startupfunc();
 
+    adc_init(); //
+
     // Initialize flash data if needed
     if (newestData == 0)
     {
@@ -91,7 +93,17 @@ void main(void)
     // Main processing loop
     while (1)
     {
+        adc_start_process();
 
+        // ADC Test : Should be removed
+        int r;
+        r=r+1;
+
+        if (r%10 == 0)
+        {
+
+   //         capture_ADC_values();
+        }
 
 
 
@@ -199,9 +211,10 @@ void main(void)
        // branchCounter++;
        // if (branchCounter >= 100000)  // Adjust this value based on your main loop timing
         //{
-        if (m==9) {
-        startBranchTransmission();
-            m=0;}
+        //
+//       if (m==9) {
+//       startBranchTransmission();
+//           m=0;}
             //branchCounter = 0;
        // }
 

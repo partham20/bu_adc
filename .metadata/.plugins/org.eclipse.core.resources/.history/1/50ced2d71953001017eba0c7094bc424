@@ -1,0 +1,102 @@
+//
+// DWW_FIRMWARE.h - Power Monitoring System Header File
+//
+
+#ifndef DWW_FIRMWARE_H
+#define DWW_FIRMWARE_H
+
+//
+// Included Files
+//
+#include "driverlib.h"
+#include "device.h"
+#include "board.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include "dww_parameter.h"
+#include "dww_parameter_s.h"
+
+#ifndef BU_ADC_H
+#define BU_ADC_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+//
+// Defines
+//
+#define NUM_CHANNELS            18
+#define SAMPLE_COUNT_THRESHOLD  100
+#define DEVICE_GPIO_PIN_LED1    29U             // GPIO number for LED1
+#define DEVICE_GPIO_CFG_LED1    GPIO_29_GPIO29  // "pinConfig" for LED1
+
+//
+// Type Definitions
+//
+typedef struct {
+    unsigned int RMS;
+    // Add other channel parameters as needed
+} DWW_CHANNEL_PARAMETER_SINGLE;
+
+typedef struct {
+    DWW_CHANNEL_PARAMETER_SINGLE dww_channel[NUM_CHANNELS];
+} DWW_CHANNEL_PARAMETER;
+
+typedef struct {
+    // Add structure fields as needed for your application
+    unsigned int flag1;
+    unsigned int flag2;
+    // Add more flags as required
+} dww_structflag;
+
+//
+// Global Variable Declarations (extern for use in other files)
+//
+extern uint32_t myADC0Results[NUM_CHANNELS];
+extern unsigned long dwSumPhaseVolt[NUM_CHANNELS];
+extern unsigned int sampleCount;
+extern float calib;
+extern DWW_CHANNEL_PARAMETER Branch;
+extern unsigned int struct_size;
+extern unsigned long dwwMathBuff;
+extern unsigned int max_curr;
+extern unsigned int demand_chk_1sec, demand_chk_1hr, demand_chk_24hr;
+extern unsigned int wDemandSumCntr[4];
+extern unsigned long dw_CurrDemandSum[NUM_CHANNELS];
+extern dww_structflag *sFlag;
+extern unsigned int adcAResult[NUM_CHANNELS];
+extern unsigned int dww_RMS_Current;
+extern unsigned int count;
+extern int root;
+extern int pinstate;
+extern volatile bool syncSignalReceived;
+extern uint16_t pinState;
+extern int a;
+
+//
+// Function Prototypes
+//
+void initEPWM(void);
+void dww_Loadper_Calc(void);
+void dww_max_min_Calc(void);
+void dww_timer(void);
+void dww_demand_Calc(void);
+
+// ADC related functions
+void initEPWM(void);
+void adc_init(void);
+void capture_ADC_values(void);
+__interrupt void adcA1ISR(void);
+
+
+
+
+
+
+
+
+
+
+#endif // BU_ADC_H

@@ -2,7 +2,7 @@
 #include "can_module.h"
 #include "timer_module.h"
 #include "flash_module.h"
-#include "bu_adc.h"
+#include "s_board_adc.h"
 #include "CPU1_FLASH/syscfg/board.h"
 
 // External variable declarations
@@ -237,11 +237,18 @@ void startupfunc(void)
    initDIPSwitchGPIO();
    readCANAddress();
 
+   // Initialize PIE and clear PIE registers
+   Interrupt_initModule();
+   Interrupt_initVectorTable();
+
    // Initialize Flash API
    FlashAPI_init();
 
    // Initialize ePWM first (this will start it)
-   initEPWM();
+   initEPWM();  // This now sets COUNTER_MODE_UP for continuous operation
+
+      // Initialize ADC (this will call Board_init and set up ADC interrupts)
+
 
    // Find flash addresses and initialize structures
    findReadAndWriteAddress();
@@ -250,12 +257,7 @@ void startupfunc(void)
    // Initialize GPIO
    Device_initGPIO();
 
-   // Initialize PIE and clear PIE registers
-   Interrupt_initModule();
-   Interrupt_initVectorTable();
-
    // Call board init (this sets up ADC and registers the interrupt)
-   Board_init();
 
    // Configure sync GPIO
   // configureGPIO28();
