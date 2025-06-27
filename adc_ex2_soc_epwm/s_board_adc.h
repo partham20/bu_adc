@@ -60,6 +60,9 @@ void dww_volt_buff_creation(void);
 //
 extern int vari;
 extern int k;
+extern float calib;
+
+#define NUM_CHANNELS 18
 
 extern unsigned int Pri_Phase_RY;
 extern unsigned int Pri_Phase_YB;
@@ -147,8 +150,12 @@ extern float calib_curr_sec_b;
 extern unsigned int sampleCount;
 
 
+extern DWW_CHANNEL_PARAMETER Branch;
+
+
+
 // Additional global variables
-extern float dwMathBuff;
+extern unsigned int dwMathBuff;
 extern unsigned int struct_size;
 extern unsigned long dwwMathBuff;
 extern unsigned int max_curr;

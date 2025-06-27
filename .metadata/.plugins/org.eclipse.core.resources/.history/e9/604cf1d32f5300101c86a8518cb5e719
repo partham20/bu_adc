@@ -1,0 +1,325 @@
+
+//
+// Included Files
+//
+#include "s_board_adc.h"
+
+// Defines
+//
+
+myADC0Results[18];
+
+/*
+ * Added for ADC check need to remove furthir
+ */
+    int i,k;
+    float avgSquare, rms;
+    unsigned long curr_square;
+    unsigned long volt_square;
+
+    int vari;
+
+
+/*
+ * Global Declaration for the Phase Calculation function
+ */
+unsigned int Pri_Phase_RY;
+unsigned int Pri_Phase_YB;
+unsigned int Pri_Phase_BR;
+unsigned int Sec_Phase_RY;
+unsigned int Sec_Phase_YB;
+unsigned int Sec_Phase_BR;
+int Volt_Lack_flag = 0;
+int Volt_Unbalance_flag = 0;
+int Phase_loss_flag = 0;
+int Phase_Seq_flag = 0;
+
+/*
+ * Global declaration for the buffer creation
+ */
+signed int Output_Volt_R[VOLT_SIZE];
+signed int Output_Volt_Y[VOLT_SIZE];
+signed int Output_Volt_B[VOLT_SIZE];
+signed int Input_Volt_R[VOLT_SIZE];
+signed int Input_Volt_Y[VOLT_SIZE];
+signed int Input_Volt_B[VOLT_SIZE];
+unsigned int buff_cntr = 0;
+
+
+
+
+/*
+ * Added for the phase sequence error 07/04/2025
+ */
+
+unsigned int lastsample[3] = {0};
+unsigned long zcsample[3] = {0};
+unsigned long sampleindex = 0;
+
+
+/*
+ * Global declaration for the instantaneous voltage buffer creation
+ */
+unsigned int index = 0;
+signed int volt_buff[BUFFER_SIZE];
+
+
+/*
+ * Global Declaration for the phase sequence error
+ */
+float Vsum;
+float v_alpha;
+float v_beta;
+float last_sample_alpha;
+float adc_r, adc_y, adc_b;
+float V_alpha_t, V_beta_t;
+float V_alpha_next, V_beta_next;
+float cross_product;
+int reversal_detected = 0;
+
+
+float theta_p;
+float del_theta_p;
+float theta_zp = 0;
+
+/*
+ *Global Declaration for the frequency and Phase sequence error
+ */
+float frequency = 0;
+volatile float lasttimestamp_R = 0;
+volatile float currenttimestamp_R = 0;
+signed int last_sample_R = 0;
+float timediff;
+float timeperiod;
+
+/*
+ * For testing purpose for the phase sequennce error in have added
+ * this global declaration further we can remove this
+ */
+signed int last_sample_Y = 0, last_sample_B = 0;
+volatile float lasttimestamp_Y = 0,lasttimestamp_B = 0;
+volatile float currenttimestamp_Y = 0, currenttimestamp_B = 0;
+int zcd_detected_R = 0, zcd_detected_Y = 0, zcd_detected_B = 0;
+
+
+
+float offset_value=2048;
+
+int a=0;
+//
+// Globals
+//
+signed int  wAdcCurrBuff[18]; // Buffer for OP, IP and GND Current
+
+
+// Global accumulator for each channel's sum of squares
+unsigned long dwSumPhaseCurr[PHASE_CURR] = {0}; // For IP, OP, GND Current
+unsigned long dwSumPhaseVolt[PHASE_VOLT] = {0}; // For IP, OP Voltage
+signed long long dwSumPhaseWatt[7] = {0};
+unsigned long kw_r, kw_y, kw_b; //primary
+unsigned long kw_r_sec, kw_y_sec, kw_b_sec; //secondary
+
+float wGain_Kw_pri = 3000.2f;
+float wGain_Kw_sec = 2100.2f;
+
+// Sample counter for RMS computation
+unsigned int sampleCount = 0;
+
+/*
+ * These are the gain values for the
+ * Input Line to Line Voltage
+ * Output Line to Neutral Voltage
+ */
+
+float calib_pri_R = 3650.2f;
+float calib_pri_Y = 3540.2f;
+float calib_pri_B = 3690.2f;
+float calib_kw_pri = 1.0f;//This need to be changed accordingly
+
+float calib_sec_R = 1180.0f;
+float calib_sec_Y = 1210.0f;
+float calib_sec_B = 1250.0f;
+
+
+#if 0
+float calib_sec = 1992.0f; //This is the original value obtained from the calculation but the ADC is not working as expected
+float calib_curr = 6587.1f;
+#endif                     //But if i change the value to 1250.0 then it is working as expected. need to investigate on this
+
+float calib_curr_pri_r = 7400.1f;
+float calib_curr_pri_y = 7400.1f;
+float calib_curr_pri_b = 7400.1f;
+float calib_curr_sec_r = 7400.1f;
+float calib_curr_sec_y = 7400.1f;
+float calib_curr_sec_b = 7400.1f;
+
+
+//
+
+void initEPWM(void);
+
+//
+// Main
+
+signed long buf[200], buf_v[200], buf_c[200];
+uint8_t countSample;
+
+
+
+/*
+ * configured GPIO28 for the sync signal
+ */
+void configureGPIO28(void)
+{
+    GPIO_setPadConfig(28, GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+    GPIO_setPinConfig(GPIO_28_GPIO28);
+    GPIO_setDirectionMode(28, GPIO_DIR_MODE_OUT);
+    GPIO_setQualificationMode(28, GPIO_QUAL_SYNC);
+
+}
+//
+// Function to configure ePWM1 to generate the SOC.
+//
+void initEPWM(void)
+{
+    EPWM_disableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
+    EPWM_setADCTriggerSource(EPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);
+    EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1);
+    //EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 2048);
+    //EPWM_setTimeBasePeriod(EPWM1_BASE, 4095);
+    EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 1500);
+    EPWM_setTimeBasePeriod(EPWM1_BASE, 2999);
+    EPWM_setClockPrescaler(EPWM1_BASE, EPWM_CLOCK_DIVIDER_4, EPWM_HSCLOCK_DIVIDER_4);
+    EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_STOP_FREEZE);
+
+    /*
+     * Added logic to calculate the frequency
+     */
+    EPWM_setPeriodLoadMode(EPWM1_BASE,EPWM_PERIOD_DIRECT_LOAD);
+    EPWM_setTimeBaseCounter(EPWM1_BASE, 0);
+
+}
+
+//
+// adcA1ISR - ADC A Interrupt 1 ISR
+//
+__interrupt void adcA1ISR(void)
+{k++;
+
+  //  GPIO_writePin(28, 0);
+
+    /*
+     * ADC Conversion for the Input, Output and Ground Current
+     */
+myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0) - 2048);
+   myADC0Results[1]  = (signed int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER2) - 2048;
+   myADC0Results[2]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1) - 2048;
+   myADC0Results[3]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2) - 2048;
+   myADC0Results[4]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER3) - 2048;
+   myADC0Results[5]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER4) - 2048;
+   myADC0Results[6]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER5) - 2048;
+   myADC0Results[7]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER6) - 2048;
+   myADC0Results[8]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER7) - 2048;
+   myADC0Results[9]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER8) - 2048;
+   myADC0Results[10] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER9) - 2048;
+   myADC0Results[11] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER10) - 2048;
+   myADC0Results[12] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER11) - 2048;
+   myADC0Results[13] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER12) - 2048;
+   myADC0Results[14] = (signed int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER3) - 2048;
+   myADC0Results[15] = (signed int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER0) - 2048;
+   myADC0Results[16] = (signed int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER1) - 2048;
+   myADC0Results[17] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER13) - 2048;
+
+
+
+
+    /*
+
+
+
+    //
+    // Increment the sample counter.
+    //
+    sampleCount++;
+
+    /*
+     * Voltage Buffer Creation
+     */
+
+
+
+
+    //
+    // Clear the ADC interrupt flags.
+    //
+    ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
+    ADC_clearInterruptStatus(myADC1_BASE, ADC_INT_NUMBER1);
+
+    if(ADC_getInterruptOverflowStatus(myADC0_BASE, ADC_INT_NUMBER1))
+    {
+        ADC_clearInterruptOverflowStatus(myADC0_BASE, ADC_INT_NUMBER1);
+        ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
+    }
+
+    if(ADC_getInterruptOverflowStatus(myADC1_BASE, ADC_INT_NUMBER1))
+    {
+        ADC_clearInterruptOverflowStatus(myADC1_BASE, ADC_INT_NUMBER1);
+        ADC_clearInterruptStatus(myADC1_BASE, ADC_INT_NUMBER1);
+    }
+
+    Interrupt_clearACKGroup(INT_myADC0_1_INTERRUPT_ACK_GROUP);
+}
+
+
+
+void adc_init()
+
+{
+
+  //  struct_size = sizeof(primary);
+    Board_init();
+
+    configureGPIO28();
+
+       /*
+        * Enabling the watchdog after the reset
+        */
+       //SysCtl_enableWatchdog();
+
+       //initEPWM();
+
+       sampleCount = 0;
+       for(i = 0; i < PHASE_CURR; i++)
+       {
+           dwSumPhaseCurr[i] = 0;
+       }
+       for(i = 0; i < PHASE_VOLT; i++)
+       {
+           dwSumPhaseVolt[i] = 0;
+       }
+
+       /*
+        * Added for the kw calculation
+        */
+
+       for(i = 0; i < 5; i++)
+       {
+           dwSumPhaseWatt[i] = 0;
+       }
+
+       EINT;
+       ERTM;
+       ADC_setVREF(ADCARESULT_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
+       EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
+       EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
+}
+
+
+void adc_start_process ()
+{
+    //ADC functions
+            a++;
+
+                    // Additional function can be placed here.
+
+}

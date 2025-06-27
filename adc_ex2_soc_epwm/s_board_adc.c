@@ -7,7 +7,9 @@
 // Defines
 //
 
-myADC0Results[18];
+signed int myADC0Results[18];
+DWW_CHANNEL_PARAMETER Branch;
+float calib = 5265;
 
 /*
  * Added for ADC check need to remove furthir
@@ -206,6 +208,11 @@ void initEPWM(void)
 __interrupt void adcA1ISR(void)
 {k++;
 
+    int i;
+    float avgSquare, rms;
+    unsigned long square;
+
+
   //  GPIO_writePin(28, 0);
 
     /*
@@ -231,27 +238,41 @@ myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0
    myADC0Results[17] = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER13) - 2048;
 
 
+   // For each channel, square the result and accumulate it.
+      //
+      for(i = 0; i < NUM_CHANNELS; i++)
+      {
+          square = (unsigned long)myADC0Results[i] * (unsigned long)myADC0Results[i];
+          dwSumPhaseVolt[i] += square;
+      }
+
+      //
+      // Increment the sample counter.
+      //
+      sampleCount++;
+
+      //
+      // Once 100 samples have been collected, compute the RMS for each channel.
+      //
+      if(sampleCount >= SAMPLE_COUNT_THRESHOLD)
+      {
+          for(i = 0; i < NUM_CHANNELS; i++)
+          {
+              avgSquare = (float)dwSumPhaseVolt[i] / (float)SAMPLE_COUNT_THRESHOLD;
+              rms = sqrtf(avgSquare) * calib/10000;
+              Branch.dww_channel[i].RMS = (unsigned int)rms;
+
+              // Reset accumulator for next set of samples
+              dwSumPhaseVolt[i] = 0;
+          }
+          sampleCount = 0;
+      }
 
 
-    /*
-
-
-
-    //
-    // Increment the sample counter.
-    //
-    sampleCount++;
-
-    /*
-     * Voltage Buffer Creation
-     */
 
 
 
 
-    //
-    // Clear the ADC interrupt flags.
-    //
     ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(myADC1_BASE, ADC_INT_NUMBER1);
 
@@ -323,3 +344,121 @@ void adc_start_process ()
                     // Additional function can be placed here.
 
 }
+
+
+
+
+//
+// Logic for Load Percentage Calculation (unchanged)
+//
+void dww_Loadper_Calc(void)
+{
+    for (i = 0; i < MAX_CT_LENGTH; i++)
+    {
+        dwwMathBuff = (unsigned long)(Branch.dww_channel[i].RMS * 1000);
+        if (max_curr != 0)
+        {
+            Branch.dww_channel[i].Loadper = dwwMathBuff / max_curr;
+        }
+    }
+}
+
+//
+// Logic for Maximum and Minimum Parameter Calculation (with added parentheses for clarity)
+//
+void dww_max_min_Calc(void)
+{
+    unsigned int i;
+    for (i = 0; i < MAX_CT_LENGTH; i++)
+    {
+        if (((Branch.dww_channel[i].RMS != 0xFFFF) &&
+             ((Branch.dww_channel[i].Maxcurrent < Branch.dww_channel[i].RMS) ||
+              (Branch.dww_channel[i].Maxcurrent == 0xFFFF))))
+        {
+            Branch.dww_channel[i].Maxcurrent = Branch.dww_channel[i].RMS;
+        }
+
+        if (((Branch.dww_channel[i].RMS != 0x0000) &&
+             ((Branch.dww_channel[i].Mincurrent > Branch.dww_channel[i].RMS) ||
+              (Branch.dww_channel[i].Mincurrent == 0x0000))))
+        {
+            Branch.dww_channel[i].Mincurrent = Branch.dww_channel[i].RMS;
+        }
+
+        if (((Branch.dww_channel[i].CTCurrDemand_1hr != 0xFFFF) &&
+             ((Branch.dww_channel[i].CTMaxCurrDemand_1hr < Branch.dww_channel[i].CTCurrDemand_1hr) ||
+              (Branch.dww_channel[i].CTMaxCurrDemand_1hr == 0xFFFF))))
+        {
+            Branch.dww_channel[i].CTMaxCurrDemand_1hr = Branch.dww_channel[i].CTCurrDemand_1hr;
+        }
+    }
+}
+
+//
+// Timer function (unchanged for now; adjust as per your timing requirements)
+//
+void dww_timer(void)
+{
+    if (demand_chk_1sec >= 270) // for 1 sec
+    {
+        sFlag->demand_chk_1sec = 1;
+        demand_chk_1sec = 0;
+        demand_chk_1hr++;
+    }
+    else
+    {
+        demand_chk_1sec++;
+    }
+
+    if(demand_chk_1hr >= 60) // Changed from 3600 to 60 for testing
+    {
+        sFlag->demand_chk_1hr = 1;
+        demand_chk_1hr = 0;
+        demand_chk_24hr++;
+    }
+
+    if(demand_chk_24hr >= 5) // Changed from 24 to 5 for testing
+    {
+        sFlag->demand_chk_24hr = 1;
+        demand_chk_24hr = 0;
+    }
+}
+
+//
+// Demand Calculation function (unchanged)
+//
+void dww_demand_Calc(void)
+{
+    int i;
+    if (sFlag->demand_chk_1sec == 1)
+    {
+        for (i = 0; i < MAX_CT_LENGTH; i++)
+        {
+            dw_CurrDemandSum[i] += Branch.dww_channel[i].RMS;
+        }
+        sFlag->demand_chk_1sec = 0;
+        wDemandSumCntr[0]++;
+    }
+
+    if (sFlag->demand_chk_1hr == 1)
+    {
+        for (i = 0; i < MAX_CT_LENGTH; i++)
+        {
+            Branch.dww_channel[i].CTCurrDemand_1hr = (unsigned int)(dw_CurrDemandSum[i] / wDemandSumCntr[0]);
+            dw_CurrDemandSum[i] = 0;
+        }
+        sFlag->demand_chk_1hr = 0;
+        wDemandSumCntr[0] = 0;
+    }
+
+    if (sFlag->demand_chk_24hr == 1)
+    {
+        for (i = 0; i < MAX_CT_LENGTH; i++)
+        {
+            Branch.dww_channel[i].CTMaxCurrDemand_24hr = Branch.dww_channel[i].CTMaxCurrDemand_1hr;
+            Branch.dww_channel[i].CTMaxCurrDemand_1hr = 0;
+        }
+        sFlag->demand_chk_24hr = 0;
+    }
+}
+
