@@ -14,13 +14,13 @@ ORDERED_OBJS += \
 "./syscfg/board.obj" \
 "./syscfg/c2000ware_libraries.obj" \
 "./board_module.obj" \
-"./bu_adc.obj" \
 "./bu_runtime.obj" \
 "./can_module.obj" \
 "./dww_power.obj" \
 "./flash_module.obj" \
 "./flashapi_128bit_programming.obj" \
 "./runtime.obj" \
+"./s_board_adc.obj" \
 "./timer_module.obj" \
 "./utilities.obj" \
 "./device/device.obj" \
@@ -162,8 +162,8 @@ adc_ex2_soc_epwm.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "adc_ex2_soc_epwm.obj" "syscfg\board.obj" "syscfg\c2000ware_libraries.obj" "board_module.obj" "bu_adc.obj" "bu_runtime.obj" "can_module.obj" "dww_power.obj" "flash_module.obj" "flashapi_128bit_programming.obj" "runtime.obj" "timer_module.obj" "utilities.obj" "device\device.obj" "device\f28p55x_codestartbranch.obj" 
-	-$(RM) "adc_ex2_soc_epwm.d" "syscfg\board.d" "syscfg\c2000ware_libraries.d" "board_module.d" "bu_adc.d" "bu_runtime.d" "can_module.d" "dww_power.d" "flash_module.d" "flashapi_128bit_programming.d" "runtime.d" "timer_module.d" "utilities.d" "device\device.d" 
+	-$(RM) "adc_ex2_soc_epwm.obj" "syscfg\board.obj" "syscfg\c2000ware_libraries.obj" "board_module.obj" "bu_runtime.obj" "can_module.obj" "dww_power.obj" "flash_module.obj" "flashapi_128bit_programming.obj" "runtime.obj" "s_board_adc.obj" "timer_module.obj" "utilities.obj" "device\device.obj" "device\f28p55x_codestartbranch.obj" 
+	-$(RM) "adc_ex2_soc_epwm.d" "syscfg\board.d" "syscfg\c2000ware_libraries.d" "board_module.d" "bu_runtime.d" "can_module.d" "dww_power.d" "flash_module.d" "flashapi_128bit_programming.d" "runtime.d" "s_board_adc.d" "timer_module.d" "utilities.d" "device\device.d" 
 	-$(RM) "device\f28p55x_codestartbranch.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'

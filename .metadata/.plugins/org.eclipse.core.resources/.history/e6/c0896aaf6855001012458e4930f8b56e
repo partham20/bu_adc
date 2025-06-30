@@ -28,19 +28,18 @@
 //
 // Globals
 //
-extern int k;
-extern  signed int myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
+uint32_t myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
 
 // Removed unused index and bufferFull variables
 
 // Global accumulator for each channels sum of squares
-extern unsigned long dwSumPhaseVolt[NUM_CHANNELS];
+extern unsigned long dwSumPhaseVolt[NUM_CHANNELS] = {0};
 
 // Sample counter for RMS computation
-extern unsigned int sampleCount ;
+extern unsigned int sampleCount = 0;
 
 // Global variable for calibration factor (adjust as needed)
-extern float calib;
+extern float calib = 5265;
 
 //
 // Global Declaration for Demand and other parameters (unchanged)
@@ -63,7 +62,7 @@ extern unsigned int count;
 extern int root;
 extern int pinstate;
 
-extern volatile bool syncSignalReceived ;  // Flag to indicate sync signal
+volatile bool syncSignalReceived = false;  // Flag to indicate sync signal
 
 //
 // Function Prototypes
@@ -79,7 +78,7 @@ void adc_start_process ();
 void adc_init();
 __interrupt void adcA1ISR(void);
 
-extern uint16_t pinState;
+uint16_t pinState;
 
 
 

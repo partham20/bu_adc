@@ -6,7 +6,7 @@
 
 int k;
 
-signed int myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
+uint32_t myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
 
 // Removed unused index and bufferFull variables
 
@@ -114,7 +114,7 @@ __interrupt void adcA1ISR(void)
     /*
      * ADC Conversion for the Input, Output and Ground Current
      */
-myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0) - 2010);
+myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0) );
    myADC0Results[1]  = (unsigned int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER2) - 2048;
    myADC0Results[2]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1) - 2048;
    myADC0Results[3]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2) - 2048;

@@ -29,7 +29,7 @@
 // Globals
 //
 extern int k;
-extern  signed int myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
+extern  uint32_t myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
 
 // Removed unused index and bufferFull variables
 

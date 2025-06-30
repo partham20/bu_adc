@@ -1,7 +1,7 @@
 ******************************************************************************
              TMS320C2000 Linker PC v22.6.1                     
 ******************************************************************************
->> Linked Fri Jun 27 14:09:36 2025
+>> Linked Mon Jun 30 09:58:48 2025
 
 OUTPUT FILE NAME:   <adc_ex2_soc_epwm.out>
 ENTRY POINT SYMBOL: "code_start"  address: 00080000
@@ -23,17 +23,17 @@ MEMORY CONFIGURATION
   RAMLS2                00009000   00000800  00000000  00000800  RWIX
   RAMLS3                00009800   00000800  00000000  00000800  RWIX
   RAMLS4                0000a000   00000800  00000000  00000800  RWIX
-  RAMLS5                0000a800   00000800  000000de  00000722  RWIX
+  RAMLS5                0000a800   00000800  00000090  00000770  RWIX
   RAMLS6                0000b000   00000800  00000000  00000800  RWIX
   RAMLS7                0000b800   00000800  00000000  00000800  RWIX
   RAMGS0                0000c000   00002000  000009b7  00001649  RWIX
-  RAMGS1                0000e000   00002000  00001e0d  000001f3  RWIX
+  RAMGS1                0000e000   00002000  00001e32  000001ce  RWIX
   RAMGS2                00010000   00002000  00000000  00002000  RWIX
   RAMGS3                00012000   00002000  00000000  00002000  RWIX
   RAMLS8                00014000   00002000  00000000  00002000  RWIX
   RAMLS9                00016000   00002000  00000000  00002000  RWIX
   BEGIN                 00080000   00000002  00000002  00000000  RWIX
-  FLASH_BANK0           00080002   0001fffe  00004357  0001bca7  RWIX
+  FLASH_BANK0           00080002   0001fffe  0000447b  0001bb83  RWIX
   FLASH_BANK1           000a0000   00020000  00000000  00020000  RWIX
   FLASH_BANK2           000c0000   00020000  00000000  00020000  RWIX
   FLASH_BANK3           000e0000   00020000  00000000  00020000  RWIX
@@ -50,40 +50,41 @@ codestart
 *          0    00080000    00000002     
                   00080000    00000002     f28p55x_codestartbranch.obj (codestart)
 
-.cinit     0    000842f8    0000006e     
-                  000842f8    0000005c     (.cinit..data.load) [load image, compression = lzss]
-                  00084354    00000006     (__TI_handler_table)
-                  0008435a    00000004     (.cinit..bss.load) [load image, compression = zero_init]
-                  0008435e    00000008     (__TI_cinit_table)
+.cinit     0    00084438    00000050     
+                  00084438    0000003e     (.cinit..data.load) [load image, compression = lzss]
+                  00084476    00000006     (__TI_handler_table)
+                  0008447c    00000004     (.cinit..bss.load) [load image, compression = zero_init]
+                  00084480    00000008     (__TI_cinit_table)
 
 .reset     0    003fffc0    00000000     DSECT
 
-.data      0    0000a800    000000de     UNINITIALIZED
-                  0000a800    00000044     s_board_adc.obj (.data)
-                  0000a844    00000020     driverlib.lib : mcan.obj (.data:dataSize)
-                  0000a864    0000001c     s_board_adc.obj (.data:dwSumPhaseWatt)
-                  0000a880    00000018     adc_ex2_soc_epwm.obj (.data)
-                  0000a898    00000010     driverlib.lib : mcan.obj (.data:objSize)
-                  0000a8a8    0000000e     s_board_adc.obj (.data:dwSumPhaseCurr)
-                  0000a8b6    0000000c     s_board_adc.obj (.data:dwSumPhaseVolt)
-                  0000a8c2    00000009     runtime.obj (.data)
-                  0000a8cb    00000001     rts2800_fpu32_eabi.lib : errno.c.obj (.data)
-                  0000a8cc    00000006                            : exit.c.obj (.data)
-                  0000a8d2    00000003     can_module.obj (.data)
-                  0000a8d5    00000003     timer_module.obj (.data)
-                  0000a8d8    00000002     rts2800_fpu32_eabi.lib : _lock.c.obj (.data:_lock)
-                  0000a8da    00000002                            : _lock.c.obj (.data:_unlock)
-                  0000a8dc    00000002     board_module.obj (.data)
+.data      0    0000a800    00000090     UNINITIALIZED
+                  0000a800    00000024     s_board_adc.obj (.data:dwSumPhaseVolt)
+                  0000a824    00000020     driverlib.lib : mcan.obj (.data:dataSize)
+                  0000a844    00000018     adc_ex2_soc_epwm.obj (.data)
+                  0000a85c    00000010     driverlib.lib : mcan.obj (.data:objSize)
+                  0000a86c    00000009     runtime.obj (.data)
+                  0000a875    00000001     rts2800_fpu32_eabi.lib : errno.c.obj (.data)
+                  0000a876    00000006                            : exit.c.obj (.data)
+                  0000a87c    00000003     can_module.obj (.data)
+                  0000a87f    00000001     --HOLE--
+                  0000a880    00000006     s_board_adc.obj (.data)
+                  0000a886    00000003     timer_module.obj (.data)
+                  0000a889    00000001     --HOLE--
+                  0000a88a    00000002     rts2800_fpu32_eabi.lib : _lock.c.obj (.data:_lock)
+                  0000a88c    00000002                            : _lock.c.obj (.data:_unlock)
+                  0000a88e    00000002     board_module.obj (.data)
 
 .stack     0    0000c7b8    00000200     UNINITIALIZED
                   0000c7b8    00000200     --HOLE--
 
-.bss       0    0000e000    00001e0d     UNINITIALIZED
+.bss       0    0000e000    00001e32     UNINITIALIZED
                   0000e000    000006e4     adc_ex2_soc_epwm.obj (.bss:rxFIFO0Msg)
                   0000e6e4    00000012     s_board_adc.obj (.bss:myADC0Results)
-                  0000e6f6    00000002     can_module.obj (.bss)
-                  0000e6f8    00000001     timer_module.obj (.bss)
-                  0000e6f9    00000007     --HOLE--
+                  0000e6f6    00000004     s_board_adc.obj (.bss:wDemandSumCntr)
+                  0000e6fa    00000002     can_module.obj (.bss)
+                  0000e6fc    00000001     timer_module.obj (.bss)
+                  0000e6fd    00000003     --HOLE--
                   0000e700    000004d8     runtime.obj (.bss)
                   0000ebd8    00000400     adc_ex2_soc_epwm.obj (.bss:Buffer)
                   0000efd8    00000400     adc_ex2_soc_epwm.obj (.bss:receivedBuffer)
@@ -98,78 +99,80 @@ codestart
                   0000fd4d    00000040     can_module.obj (.bss:firstBUFrameData)
                   0000fd8d    00000040     adc_ex2_soc_epwm.obj (.bss:retransmissionData)
                   0000fdcd    00000040     can_module.obj (.bss:secondBUFrameData)
+                  0000fe0d    00000001     --HOLE--
+                  0000fe0e    00000024     s_board_adc.obj (.bss:dw_CurrDemandSum)
 
 .init_array 
 *          0    00080008    00000000     UNINITIALIZED
 
-.const     0    000832f0    0000084e     
-                  000832f0    0000009b     driverlib.lib : flash.obj (.const:.string)
-                  0008338b    00000001     --HOLE-- [fill = 0]
-                  0008338c    0000009a                   : sysctl.obj (.const:.string)
-                  00083426    00000098                   : gpio.obj (.const:.string)
-                  000834be    00000097                   : adc.obj (.const:.string)
-                  00083555    00000001     --HOLE-- [fill = 0]
-                  00083556    0000008c     board_module.obj (.const:.string)
-                  000835e2    0000008b     board.obj (.const:.string)
-                  0008366d    00000001     --HOLE-- [fill = 0]
-                  0008366e    00000088     s_board_adc.obj (.const:.string)
-                  000836f6    00000059     device.obj (.const:.string)
-                  0008374f    00000001     --HOLE-- [fill = 0]
-                  00083750    00000050     driverlib.lib : cputimer.obj (.const:.string)
-                  000837a0    0000004f                   : asysctl.obj (.const:.string)
-                  000837ef    00000001     --HOLE-- [fill = 0]
-                  000837f0    0000004c                   : mcan.obj (.const:.string)
-                  0008383c    0000004b                   : pga.obj (.const:.string)
-                  00083887    00000001     --HOLE-- [fill = 0]
-                  00083888    00000048     can_module.obj (.const:.string)
-                  000838d0    00000048     timer_module.obj (.const:.string)
-                  00083918    00000040     can_module.obj (.const:$P$T0$1)
-                  00083958    00000040     can_module.obj (.const:$P$T1$2)
-                  00083998    00000040     can_module.obj (.const:$P$T2$3)
-                  000839d8    00000040     utilities.obj (.const:$P$T2$3)
-                  00083a18    00000040     can_module.obj (.const:$P$T3$4)
-                  00083a58    00000040     utilities.obj (.const:$P$T3$4)
-                  00083a98    00000040     utilities.obj (.const:$P$T4$5)
-                  00083ad8    00000040     utilities.obj (.const:$P$T5$6)
-                  00083b18    00000026     flash_module.obj (.const)
+.const     0    00083430    0000084e     
+                  00083430    0000009b     driverlib.lib : flash.obj (.const:.string)
+                  000834cb    00000001     --HOLE-- [fill = 0]
+                  000834cc    0000009a                   : sysctl.obj (.const:.string)
+                  00083566    00000098                   : gpio.obj (.const:.string)
+                  000835fe    00000097                   : adc.obj (.const:.string)
+                  00083695    00000001     --HOLE-- [fill = 0]
+                  00083696    0000008c     board_module.obj (.const:.string)
+                  00083722    0000008b     board.obj (.const:.string)
+                  000837ad    00000001     --HOLE-- [fill = 0]
+                  000837ae    00000088     s_board_adc.obj (.const:.string)
+                  00083836    00000059     device.obj (.const:.string)
+                  0008388f    00000001     --HOLE-- [fill = 0]
+                  00083890    00000050     driverlib.lib : cputimer.obj (.const:.string)
+                  000838e0    0000004f                   : asysctl.obj (.const:.string)
+                  0008392f    00000001     --HOLE-- [fill = 0]
+                  00083930    0000004c                   : mcan.obj (.const:.string)
+                  0008397c    0000004b                   : pga.obj (.const:.string)
+                  000839c7    00000001     --HOLE-- [fill = 0]
+                  000839c8    00000048     can_module.obj (.const:.string)
+                  00083a10    00000048     timer_module.obj (.const:.string)
+                  00083a58    00000040     can_module.obj (.const:$P$T0$1)
+                  00083a98    00000040     can_module.obj (.const:$P$T1$2)
+                  00083ad8    00000040     can_module.obj (.const:$P$T2$3)
+                  00083b18    00000040     utilities.obj (.const:$P$T2$3)
+                  00083b58    00000040     can_module.obj (.const:$P$T3$4)
+                  00083b98    00000040     utilities.obj (.const:$P$T3$4)
+                  00083bd8    00000040     utilities.obj (.const:$P$T4$5)
+                  00083c18    00000040     utilities.obj (.const:$P$T5$6)
+                  00083c58    00000026     flash_module.obj (.const)
 
 .TI.ramfunc 
-*          0    00083b40    000007b7     RUN ADDR = 0000c000
-                  00083b40    00000189     FAPI_F28P55x_EABI_v4.00.00.lib : Program.obj (.text:Fapi_issueProgrammingCommand)
-                  00083cc9    0000017a                                    : Init.obj (.text:Fapi_initializeAPI)
-                  00083e43    00000072                                    : Read.obj (.text:Fapi_loopRegionForValue)
-                  00083eb5    0000004e                                    : BlankCheck.obj (.text:Fapi_doBlankCheck)
-                  00083f03    00000042                                    : Async.obj (.text:Fapi_issueBankEraseCommand)
-                  00083f45    0000003c                                    : FlashStateMachine.obj (.text:Fapi_isAddressEcc)
-                  00083f81    0000003b                                    : Utilities.obj (.text:Fapi_isAddressValid)
-                  00083fbc    0000003a                                    : Async.obj (.text:Fapi_issueAsyncCommandWithAddress)
-                  00083ff6    00000038                                    : Verify.obj (.text:Fapi_doVerify)
-                  0008402e    0000002a                                    : Utilities.obj (.text:Write_32bp)
-                  00084058    00000026                                    : Utilities.obj (.text:Write_32)
-                  0008407e    00000024                                    : Async.obj (.text:Fapi_issueAsyncCommand)
-                  000840a2    00000023                                    : Read.obj (.text:Fapi_checkRegionForValue)
-                  000840c5    00000021                                    : FlashStateMachine.obj (.text:Fapi_setupBankSectorEnable)
-                  000840e6    0000001c                                    : FlashStateMachine.obj (.text:Fapi_CheckLinkPointers)
-                  00084102    00000015                                    : Read.obj (.text:Fapi_flushPipeline)
-                  00084117    00000011                                    : FlashStateMachine.obj (.text:Fapi_issueFsmCommand)
-                  00084128    00000010                                    : Utilities.obj (.text:Fapi_regReadback)
-                  00084138    0000000d                                    : FlashStateMachine.obj (.text:Fapi_checkFsmForReady)
-                  00084145    00000006                                    : FlashStateMachine.obj (.text:Fapi_setActiveFlashBank)
-                  0008414b    00000004                                    : FlashStateMachine.obj (.text:Fapi_getFsmStatus)
-                  0008414f    00000066     flash_module.obj (.TI.ramfunc:writeToFlash)
-                  000841b5    0000003a     flash_module.obj (.TI.ramfunc:Example_EraseSector)
-                  000841ef    00000036     driverlib.lib : flash.obj (.TI.ramfunc:Flash_initModule)
-                  00084225    00000022                   : flash.obj (.TI.ramfunc:Flash_setWaitstates)
-                  00084247    0000001f     flash_module.obj (.TI.ramfunc:FlashAPI_init)
-                  00084266    0000001c     flash_module.obj (.TI.ramfunc:ClearFSMStatus)
-                  00084282    00000018     driverlib.lib : flash.obj (.TI.ramfunc:Flash_disableCache)
-                  0008429a    00000017                   : flash.obj (.TI.ramfunc:Flash_disablePrefetch)
-                  000842b1    00000016                   : flash.obj (.TI.ramfunc:Flash_enableCache)
-                  000842c7    00000016                   : flash.obj (.TI.ramfunc:Flash_enableECC)
-                  000842dd    00000016                   : flash.obj (.TI.ramfunc:Flash_enablePrefetch)
-                  000842f3    00000004                   : sysctl.obj (.TI.ramfunc)
+*          0    00083c80    000007b7     RUN ADDR = 0000c000
+                  00083c80    00000189     FAPI_F28P55x_EABI_v4.00.00.lib : Program.obj (.text:Fapi_issueProgrammingCommand)
+                  00083e09    0000017a                                    : Init.obj (.text:Fapi_initializeAPI)
+                  00083f83    00000072                                    : Read.obj (.text:Fapi_loopRegionForValue)
+                  00083ff5    0000004e                                    : BlankCheck.obj (.text:Fapi_doBlankCheck)
+                  00084043    00000042                                    : Async.obj (.text:Fapi_issueBankEraseCommand)
+                  00084085    0000003c                                    : FlashStateMachine.obj (.text:Fapi_isAddressEcc)
+                  000840c1    0000003b                                    : Utilities.obj (.text:Fapi_isAddressValid)
+                  000840fc    0000003a                                    : Async.obj (.text:Fapi_issueAsyncCommandWithAddress)
+                  00084136    00000038                                    : Verify.obj (.text:Fapi_doVerify)
+                  0008416e    0000002a                                    : Utilities.obj (.text:Write_32bp)
+                  00084198    00000026                                    : Utilities.obj (.text:Write_32)
+                  000841be    00000024                                    : Async.obj (.text:Fapi_issueAsyncCommand)
+                  000841e2    00000023                                    : Read.obj (.text:Fapi_checkRegionForValue)
+                  00084205    00000021                                    : FlashStateMachine.obj (.text:Fapi_setupBankSectorEnable)
+                  00084226    0000001c                                    : FlashStateMachine.obj (.text:Fapi_CheckLinkPointers)
+                  00084242    00000015                                    : Read.obj (.text:Fapi_flushPipeline)
+                  00084257    00000011                                    : FlashStateMachine.obj (.text:Fapi_issueFsmCommand)
+                  00084268    00000010                                    : Utilities.obj (.text:Fapi_regReadback)
+                  00084278    0000000d                                    : FlashStateMachine.obj (.text:Fapi_checkFsmForReady)
+                  00084285    00000006                                    : FlashStateMachine.obj (.text:Fapi_setActiveFlashBank)
+                  0008428b    00000004                                    : FlashStateMachine.obj (.text:Fapi_getFsmStatus)
+                  0008428f    00000066     flash_module.obj (.TI.ramfunc:writeToFlash)
+                  000842f5    0000003a     flash_module.obj (.TI.ramfunc:Example_EraseSector)
+                  0008432f    00000036     driverlib.lib : flash.obj (.TI.ramfunc:Flash_initModule)
+                  00084365    00000022                   : flash.obj (.TI.ramfunc:Flash_setWaitstates)
+                  00084387    0000001f     flash_module.obj (.TI.ramfunc:FlashAPI_init)
+                  000843a6    0000001c     flash_module.obj (.TI.ramfunc:ClearFSMStatus)
+                  000843c2    00000018     driverlib.lib : flash.obj (.TI.ramfunc:Flash_disableCache)
+                  000843da    00000017                   : flash.obj (.TI.ramfunc:Flash_disablePrefetch)
+                  000843f1    00000016                   : flash.obj (.TI.ramfunc:Flash_enableCache)
+                  00084407    00000016                   : flash.obj (.TI.ramfunc:Flash_enableECC)
+                  0008441d    00000016                   : flash.obj (.TI.ramfunc:Flash_enablePrefetch)
+                  00084433    00000004                   : sysctl.obj (.TI.ramfunc)
 
-.text      0    00080008    000032e4     
+.text      0    00080008    00003426     
                   00080008    000001c2     driverlib.lib : mcan.obj (.text:MCAN_msgRAMConfig)
                   000801ca    0000017a     s_board_adc.obj (.text:adcA1ISR)
                   00080344    00000155     board.obj (.text:PinMux_init)
@@ -190,211 +193,215 @@ codestart
                   000811bd    000000a4     bu_runtime.obj (.text:initBranchRuntime)
                   00081261    0000009e     can_module.obj (.text:processBUFrames)
                   000812ff    00000098     driverlib.lib : mcan.obj (.text:MCAN_readMsgRam)
-                  00081397    0000008b     runtime.obj (.text:processVoltageFrame)
-                  00081422    00000088     rts2800_fpu32_eabi.lib : fs_div28.asm.obj (.text)
-                  000814aa    00000087     can_module.obj (.text:resetCANModule)
-                  00081531    0000007f     board_module.obj (.text:processBUBoardData)
-                  000815b0    0000007e     can_module.obj (.text:transmitGainFrames)
-                  0008162e    0000007d     board.obj (.text:myADC1_init)
-                  000816ab    00000078     driverlib.lib : mcan.obj (.text:MCAN_getRxFIFOStatus)
-                  00081723    00000075     s_board_adc.obj (.text:EPWM_setADCTriggerSource)
-                  00081798    00000073     driverlib.lib : sysctl.obj (.text:DCC_setCounterSeeds)
-                  0008180b    00000071     can_module.obj (.text:copyRxFIFO)
-                  0008187c    00000071     can_module.obj (.text:transmit)
-                  000818ed    0000006d     can_module.obj (.text:sendBUFrameAcknowledgment)
-                  0008195a    0000006a     can_module.obj (.text:prepareFramesForTransmission)
-                  000819c4    0000006a     can_module.obj (.text:sendCalibrationDataFormatVersion)
-                  00081a2e    00000068     utilities.obj (.text:calibDataUpdateFailAck)
-                  00081a96    00000068     utilities.obj (.text:calibDataUpdateSuccessAck)
-                  00081afe    00000068     utilities.obj (.text:erasedBank4Ack)
-                  00081b66    00000068     can_module.obj (.text:maxRetriesExceeded)
-                  00081bce    00000068     utilities.obj (.text:writtenDefaultCalibrationValuesAck)
-                  00081c36    00000065     driverlib.lib : sysctl.obj (.text:SysCtl_getClock)
-                  00081c9b    0000005e     runtime.obj (.text:copyVoltageRxFIFO)
-                  00081cf9    0000005d     can_module.obj (.text:sendDiscoveryMessage)
-                  00081d56    0000005c     board_module.obj (.text:startupfunc)
-                  00081db2    0000005a     driverlib.lib : mcan.obj (.text:MCAN_writeRxFIFOAck)
-                  00081e0c    00000058     flash_module.obj (.text:writeDefaultCalibrationValues)
-                  00081e64    00000057     driverlib.lib : mcan.obj (.text:MCAN_writeMsgRam)
-                  00081ebb    00000052                   : gpio.obj (.text:GPIO_setPadConfig)
-                  00081f0d    00000052     s_board_adc.obj (.text:adc_init)
-                  00081f5f    00000051     flash_module.obj (.text:findReadAndWriteAddress)
-                  00081fb0    0000004f     driverlib.lib : mcan.obj (.text:MCAN_addStdMsgIDFilter)
-                  00081fff    0000004f     timer_module.obj (.text:frameTrackingTimerISR)
-                  0008204e    0000004e     flash_module.obj (.text:eraseBank4)
-                  0008209c    0000004e     board_module.obj (.text:initDIPSwitchGPIO)
-                  000820ea    0000004d     board_module.obj (.text:checkAddressChange)
-                  00082137    00000047     driverlib.lib : sysctl.obj (.text:SysCtl_selectOscSource)
-                  0008217e    00000046     board.obj (.text:ADC_setupSOC)
-                  000821c4    00000046     driverlib.lib : sysctl.obj (.text:SysCtl_selectXTAL)
-                  0008220a    00000045                   : sysctl.obj (.text:SysCtl_pollX1Counter)
-                  0008224f    00000044                   : pga.obj (.text:PGA_setOffsetTrimPMOS)
-                  00082293    00000041                   : pga.obj (.text:PGA_setOffsetTrimNMOS)
-                  000822d4    0000003f     can_module.obj (.text:processBUSpecificMessage)
-                  00082313    0000003e     driverlib.lib : adc.obj (.text:ADC_setVREF)
-                  00082351    0000003e     flash_module.obj (.text:eraseSectorOrFindEmptySector)
-                  0008238f    0000003d     driverlib.lib : interrupt.obj (.text:Interrupt_initModule)
-                  000823cc    0000003b     s_board_adc.obj (.text:EPWM_isBaseValid)
-                  00082407    0000003a     s_board_adc.obj (.text:EPWM_setADCTriggerEventPrescale)
-                  00082441    00000039     driverlib.lib : gpio.obj (.text:GPIO_setQualificationPeriod)
-                  0008247a    00000037                   : gpio.obj (.text:GPIO_setPinConfig)
-                  000824b1    00000037                   : gpio.obj (.text:GPIO_setQualificationMode)
-                  000824e8    00000037                   : interrupt.obj (.text:Interrupt_enable)
-                  0008251f    00000036     timer_module.obj (.text:configCPUTimer)
-                  00082555    00000035     timer_module.obj (.text:configureTimer2)
-                  0008258a    00000034     s_board_adc.obj (.text:initEPWM)
-                  000825be    00000033     driverlib.lib : mcan.obj (.text:MCAN_enableIntr)
-                  000825f1    00000033                   : mcan.obj (.text:MCAN_selectIntrLine)
-                  00082624    00000032     timer_module.obj (.text:cpuTimer2ISR)
-                  00082656    00000031     driverlib.lib : gpio.obj (.text:GPIO_setDirectionMode)
-                  00082687    00000030     rts2800_fpu32_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss)
-                  000826b7    0000002f     board.obj (.text:ADC_setInterruptSource)
-                  000826e6    0000002e     board.obj (.text:ADC_setInterruptSOCTrigger)
-                  00082714    0000002e     timer_module.obj (.text:initCPUTimers)
-                  00082742    0000002c     driverlib.lib : mcan.obj (.text:MCAN_txBufAddReq)
-                  0008276e    0000002b     rts2800_fpu32_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit)
-                  00082799    00000029     driverlib.lib : mcan.obj (.text:MCAN_enableIntrLine)
-                  000827c2    00000029     board_module.obj (.text:SysCtl_setMCANClk)
-                  000827eb    00000029     rts2800_fpu32_eabi.lib : exit.c.obj (.text)
-                  00082814    00000027                            : e_sqrtf.c.obj (.text)
-                  0008283b    00000025     driverlib.lib : sysctl.obj (.text:SysCtl_selectXTALSingleEnded)
-                  00082860    00000025     board_module.obj (.text:readCANAddress)
-                  00082885    00000024     driverlib.lib : sysctl.obj (.text:DCC_enableSingleShotMode)
-                  000828a9    00000023     board_module.obj (.text:GPIO_isPinValid)
-                  000828cc    00000023     driverlib.lib : gpio.obj (.text:GPIO_isPinValid)
-                  000828ef    00000023     board_module.obj (.text:GPIO_readPin)
-                  00082912    00000022     s_board_adc.obj (.text:ADC_readResult)
-                  00082934    00000022     s_board_adc.obj (.text:EPWM_setCounterCompareValue)
-                  00082956    00000022     rts2800_fpu32_eabi.lib : i_div28.asm.obj (.text)
-                  00082978    00000021     board.obj (.text:ADC_disableContinuousMode)
-                  00082999    00000020     board.obj (.text:ADC_enableInterrupt)
-                  000829b9    0000001f     s_board_adc.obj (.text:ADC_getInterruptOverflowStatus)
-                  000829d8    0000001f     board.obj (.text:ADC_isBaseValid)
-                  000829f7    0000001f     driverlib.lib : adc.obj (.text:ADC_isBaseValid)
-                  00082a16    0000001f     s_board_adc.obj (.text:ADC_isBaseValid)
-                  00082a35    0000001f     driverlib.lib : mcan.obj (.text:MCAN_clearNewDataStatus)
-                  00082a54    0000001f                   : mcan.obj (.text:MCAN_isMemInitDone)
-                  00082a73    0000001f     timer_module.obj (.text:initFrameTracking)
-                  00082a92    0000001e     driverlib.lib : sysctl.obj (.text:DCC_setCounter0ClkSource)
-                  00082ab0    0000001e                   : sysctl.obj (.text:DCC_setCounter1ClkSource)
-                  00082ace    0000001e                   : interrupt.obj (.text:Interrupt_initVectorTable)
-                  00082aec    0000001d                   : asysctl.obj (.text:ASysCtl_setAnalogReferenceInternal)
-                  00082b09    0000001d                   : mcan.obj (.text:MCAN_getNewDataStatus)
-                  00082b26    0000001d     rts2800_fpu32_eabi.lib : memcpy.c.obj (.text)
-                  00082b43    0000001c     board.obj (.text:ADC_setSOCPriority)
-                  00082b5f    0000001c     s_board_adc.obj (.text:EPWM_disableADCTrigger)
-                  00082b7b    0000001c     s_board_adc.obj (.text:EPWM_enableADCTrigger)
-                  00082b97    0000001c     s_board_adc.obj (.text:EPWM_setClockPrescaler)
-                  00082bb3    0000001a     board_module.obj (.text:CPUTimer_startTimer)
-                  00082bcd    0000001a     timer_module.obj (.text:CPUTimer_startTimer)
-                  00082be7    0000001a     device.obj (.text:Device_initGPIO)
-                  00082c01    0000001a     driverlib.lib : mcan.obj (.text:MCAN_clearInterrupt)
-                  00082c1b    0000001a                   : sysctl.obj (.text:SysCtl_getLowSpeedClock)
-                  00082c35    0000001a     board_module.obj (.text:handleDiscoveryProcess)
-                  00082c4f    0000001a     board_module.obj (.text:resetFrameTrackingVariables)
-                  00082c69    00000019     board.obj (.text:ASysCtl_setAnalogReference1P65)
-                  00082c82    00000019     driverlib.lib : mcan.obj (.text:MCAN_setOpMode)
-                  00082c9b    00000019                   : mcan.obj (.text:MCAN_writeProtectedRegAccessLock)
-                  00082cb4    00000019                   : mcan.obj (.text:MCAN_writeProtectedRegAccessUnlock)
-                  00082ccd    00000019                   : sysctl.obj (.text:SysCtl_setPLLSysClk)
-                  00082ce6    00000019     board_module.obj (.text:handleGainRetransmission)
-                  00082cff    00000018     s_board_adc.obj (.text:EPWM_setPeriodLoadMode)
-                  00082d17    00000017     s_board_adc.obj (.text:ADC_clearInterruptOverflowStatus)
-                  00082d2e    00000017     board.obj (.text:ADC_clearInterruptStatus)
-                  00082d45    00000017     s_board_adc.obj (.text:ADC_clearInterruptStatus)
-                  00082d5c    00000017     board_module.obj (.text:CPUTimer_isBaseValid)
-                  00082d73    00000017     can_module.obj (.text:CPUTimer_isBaseValid)
-                  00082d8a    00000017     driverlib.lib : cputimer.obj (.text:CPUTimer_isBaseValid)
-                  00082da1    00000017     timer_module.obj (.text:CPUTimer_isBaseValid)
-                  00082db8    00000017     timer_module.obj (.text:CPUTimer_setPreScaler)
-                  00082dcf    00000017     driverlib.lib : mcan.obj (.text:HW_WR_FIELD32_RAW)
-                  00082de6    00000017                   : mcan.obj (.text:MCAN_getOpMode)
-                  00082dfd    00000017                   : pga.obj (.text:PGA_isBaseValid)
-                  00082e14    00000017     device.obj (.text:SysCtl_enablePeripheral)
-                  00082e2b    00000017     driverlib.lib : sysctl.obj (.text:SysCtl_enablePeripheral)
-                  00082e42    00000017     rts2800_fpu32_eabi.lib : boot28.asm.obj (.text)
-                  00082e59    00000016     board.obj (.text:ADC_setInterruptPulseMode)
-                  00082e6f    00000016     board.obj (.text:ADC_setPrescaler)
-                  00082e85    00000016     driverlib.lib : sysctl.obj (.text:DCC_disableDoneSignal)
-                  00082e9b    00000016                   : interrupt.obj (.text:Interrupt_defaultHandler)
-                  00082eb1    00000015     board.obj (.text:ADC_disableBurstMode)
-                  00082ec6    00000015     timer_module.obj (.text:CPUTimer_enableInterrupt)
-                  00082edb    00000015     driverlib.lib : sysctl.obj (.text:DCC_clearDoneFlag)
-                  00082ef0    00000015                   : sysctl.obj (.text:DCC_clearErrorFlag)
-                  00082f05    00000015                   : sysctl.obj (.text:DCC_disableErrorSignal)
-                  00082f1a    00000015                   : sysctl.obj (.text:DCC_isBaseValid)
-                  00082f2f    00000015     device.obj (.text:GPIO_unlockPortConfig)
-                  00082f44    00000015     driverlib.lib : mcan.obj (.text:MCAN_clearIntrStatus)
-                  00082f59    00000015                   : mcan.obj (.text:MCAN_isBaseValid)
-                  00082f6e    00000015     s_board_adc.obj (.text:configureGPIO28)
-                  00082f83    00000015     can_module.obj (.text:processDiscoveryAck)
-                  00082f98    00000014     board_module.obj (.text:CPUTimer_reloadTimerCounter)
-                  00082fac    00000014     timer_module.obj (.text:CPUTimer_reloadTimerCounter)
-                  00082fc0    00000014     board_module.obj (.text:CPUTimer_stopTimer)
-                  00082fd4    00000014     can_module.obj (.text:CPUTimer_stopTimer)
-                  00082fe8    00000014     timer_module.obj (.text:CPUTimer_stopTimer)
-                  00082ffc    00000014     driverlib.lib : sysctl.obj (.text:DCC_disableModule)
-                  00083010    00000014                   : sysctl.obj (.text:DCC_enableModule)
-                  00083024    00000014     s_board_adc.obj (.text:EPWM_setTimeBaseCounterMode)
-                  00083038    00000014     s_board_adc.obj (.text:EPWM_setTimeBasePeriod)
-                  0008304c    00000014     driverlib.lib : mcan.obj (.text:MCAN_getDataSize)
-                  00083060    00000014                   : mcan.obj (.text:MCAN_getMsgObjSize)
-                  00083074    00000014     timer_module.obj (.text:startDiscoveryTimer)
-                  00083088    00000013     board.obj (.text:ADC_enableAltDMATiming)
-                  0008309b    00000013     board.obj (.text:ADC_enableConverter)
-                  000830ae    00000013     driverlib.lib : cputimer.obj (.text:CPUTimer_setEmulationMode)
-                  000830c1    00000013     can_module.obj (.text:MCANIntrConfig)
-                  000830d4    00000013     driverlib.lib : mcan.obj (.text:MCAN_getIntrStatus)
-                  000830e7    00000013                   : mcan.obj (.text:MCAN_getTxBufReqPend)
-                  000830fa    00000013     runtime.obj (.text:isVoltageDataComplete)
-                  0008310d    00000012     s_board_adc.obj (.text:EPWM_setTimeBaseCounter)
-                  0008311f    00000011     timer_module.obj (.text:CPUTimer_setPeriod)
-                  00083130    00000011     board_module.obj (.text:resetDiscoveryFlags)
-                  00083141    00000010     driverlib.lib : flash.obj (.text:Flash_isCtrlBaseValid)
-                  00083151    00000010                   : flash.obj (.text:Flash_isECCBaseValid)
-                  00083161    0000000f     board.obj (.text:Interrupt_register)
-                  00083170    0000000f     can_module.obj (.text:Interrupt_register)
-                  0008317f    0000000f     timer_module.obj (.text:Interrupt_register)
-                  0008318e    0000000f     board_module.obj (.text:readDIPSwitch)
-                  0008319d    0000000d     driverlib.lib : mcan.obj (.text:HW_RD_FIELD32_RAW)
-                  000831aa    0000000d     board.obj (.text:INTERRUPT_init)
-                  000831b7    0000000d     driverlib.lib : interrupt.obj (.text:Interrupt_disableGlobal)
-                  000831c4    0000000d     can_module.obj (.text:Interrupt_enableGlobal)
-                  000831d1    0000000d     driverlib.lib : interrupt.obj (.text:Interrupt_enableGlobal)
-                  000831de    0000000d     device.obj (.text:SysCtl_setLowSpeedClock)
-                  000831eb    0000000d     utilities.obj (.text:initializePDUManager)
-                  000831f8    0000000c     can_module.obj (.text:processGainAcknowledgment)
-                  00083204    0000000c     rts2800_fpu32_eabi.lib : args_main.c.obj (.text)
-                  00083210    0000000c     timer_module.obj (.text:startGainTransmissionRetry)
-                  0008321c    0000000b     board.obj (.text:Board_init)
-                  00083227    0000000b     device.obj (.text:SysCtl_disableWatchdog)
-                  00083232    0000000b     driverlib.lib : sysctl.obj (.text:SysCtl_isMCDClockFailureDetected)
-                  0008323d    0000000b     utilities.obj (.text:syncReadWriteToWorking)
-                  00083248    0000000a     board.obj (.text:ASYSCTL_init)
-                  00083252    0000000a     driverlib.lib : interrupt.obj (.text:Interrupt_illegalOperationHandler)
-                  0008325c    0000000a                   : interrupt.obj (.text:Interrupt_nmiHandler)
-                  00083266    00000009     rts2800_fpu32_eabi.lib : _lock.c.obj (.text)
-                  0008326f    00000009     runtime.obj (.text:syncVoltageData)
-                  00083278    00000008     flash_module.obj (.text:Example_Error)
-                  00083280    00000008     rts2800_fpu32_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none)
-                  00083288    00000008     f28p55x_codestartbranch.obj (.text)
-                  00083290    00000007     board.obj (.text:ASysCtl_disableTemperatureSensor)
-                  00083297    00000007     device.obj (.text:ASysCtl_lockVREG)
-                  0008329e    00000007     driverlib.lib : mcan.obj (.text:HW_RD_REG32_RAW)
-                  000832a5    00000007                   : mcan.obj (.text:HW_WR_REG32_RAW)
-                  000832ac    00000007                   : sysctl.obj (.text:SysCtl_resetMCD)
-                  000832b3    00000007     rts2800_fpu32_eabi.lib : memset.c.obj (.text)
-                  000832ba    00000006     can_module.obj (.text:Interrupt_clearACKGroup)
-                  000832c0    00000006     s_board_adc.obj (.text:Interrupt_clearACKGroup)
-                  000832c6    00000006     timer_module.obj (.text:Interrupt_clearACKGroup)
-                  000832cc    00000006     rts2800_fpu32_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI)
-                  000832d2    00000005     board.obj (.text:ADC_init)
-                  000832d7    00000005     flash_module.obj (.text:FMSTAT_Fail)
-                  000832dc    00000005     device.obj (.text:__error__)
-                  000832e1    00000004     flash_module.obj (.text:Example_Done)
-                  000832e5    00000004     s_board_adc.obj (.text:adc_start_process)
-                  000832e9    00000002     rts2800_fpu32_eabi.lib : pre_init.c.obj (.text)
-                  000832eb    00000001                            : startup.c.obj (.text)
+                  00081397    00000094     s_board_adc.obj (.text:dww_max_min_Calc)
+                  0008142b    0000008b     runtime.obj (.text:processVoltageFrame)
+                  000814b6    00000089     s_board_adc.obj (.text:dww_demand_Calc)
+                  0008153f    00000088     rts2800_fpu32_eabi.lib : fs_div28.asm.obj (.text)
+                  000815c7    00000087     can_module.obj (.text:resetCANModule)
+                  0008164e    0000007f     board_module.obj (.text:processBUBoardData)
+                  000816cd    0000007e     can_module.obj (.text:transmitGainFrames)
+                  0008174b    0000007d     board.obj (.text:myADC1_init)
+                  000817c8    00000078     driverlib.lib : mcan.obj (.text:MCAN_getRxFIFOStatus)
+                  00081840    00000075     s_board_adc.obj (.text:EPWM_setADCTriggerSource)
+                  000818b5    00000073     driverlib.lib : sysctl.obj (.text:DCC_setCounterSeeds)
+                  00081928    00000071     can_module.obj (.text:copyRxFIFO)
+                  00081999    00000071     can_module.obj (.text:transmit)
+                  00081a0a    0000006d     can_module.obj (.text:sendBUFrameAcknowledgment)
+                  00081a77    0000006a     can_module.obj (.text:prepareFramesForTransmission)
+                  00081ae1    0000006a     can_module.obj (.text:sendCalibrationDataFormatVersion)
+                  00081b4b    00000068     utilities.obj (.text:calibDataUpdateFailAck)
+                  00081bb3    00000068     utilities.obj (.text:calibDataUpdateSuccessAck)
+                  00081c1b    00000068     utilities.obj (.text:erasedBank4Ack)
+                  00081c83    00000068     can_module.obj (.text:maxRetriesExceeded)
+                  00081ceb    00000068     utilities.obj (.text:writtenDefaultCalibrationValuesAck)
+                  00081d53    00000065     driverlib.lib : sysctl.obj (.text:SysCtl_getClock)
+                  00081db8    0000005e     runtime.obj (.text:copyVoltageRxFIFO)
+                  00081e16    0000005d     can_module.obj (.text:sendDiscoveryMessage)
+                  00081e73    0000005c     board_module.obj (.text:startupfunc)
+                  00081ecf    0000005a     driverlib.lib : mcan.obj (.text:MCAN_writeRxFIFOAck)
+                  00081f29    00000058     flash_module.obj (.text:writeDefaultCalibrationValues)
+                  00081f81    00000057     driverlib.lib : mcan.obj (.text:MCAN_writeMsgRam)
+                  00081fd8    00000052                   : gpio.obj (.text:GPIO_setPadConfig)
+                  0008202a    00000051     flash_module.obj (.text:findReadAndWriteAddress)
+                  0008207b    0000004f     driverlib.lib : mcan.obj (.text:MCAN_addStdMsgIDFilter)
+                  000820ca    0000004f     timer_module.obj (.text:frameTrackingTimerISR)
+                  00082119    0000004e     flash_module.obj (.text:eraseBank4)
+                  00082167    0000004e     board_module.obj (.text:initDIPSwitchGPIO)
+                  000821b5    0000004d     board_module.obj (.text:checkAddressChange)
+                  00082202    00000047     driverlib.lib : sysctl.obj (.text:SysCtl_selectOscSource)
+                  00082249    00000046     board.obj (.text:ADC_setupSOC)
+                  0008228f    00000046     driverlib.lib : sysctl.obj (.text:SysCtl_selectXTAL)
+                  000822d5    00000045                   : sysctl.obj (.text:SysCtl_pollX1Counter)
+                  0008231a    00000044                   : pga.obj (.text:PGA_setOffsetTrimPMOS)
+                  0008235e    00000041                   : pga.obj (.text:PGA_setOffsetTrimNMOS)
+                  0008239f    0000003f     can_module.obj (.text:processBUSpecificMessage)
+                  000823de    0000003e     driverlib.lib : adc.obj (.text:ADC_setVREF)
+                  0008241c    0000003e     flash_module.obj (.text:eraseSectorOrFindEmptySector)
+                  0008245a    0000003d     driverlib.lib : interrupt.obj (.text:Interrupt_initModule)
+                  00082497    0000003b     s_board_adc.obj (.text:EPWM_isBaseValid)
+                  000824d2    0000003a     s_board_adc.obj (.text:EPWM_setADCTriggerEventPrescale)
+                  0008250c    00000039     driverlib.lib : gpio.obj (.text:GPIO_setQualificationPeriod)
+                  00082545    00000037                   : gpio.obj (.text:GPIO_setPinConfig)
+                  0008257c    00000037                   : gpio.obj (.text:GPIO_setQualificationMode)
+                  000825b3    00000037                   : interrupt.obj (.text:Interrupt_enable)
+                  000825ea    00000036     timer_module.obj (.text:configCPUTimer)
+                  00082620    00000035     timer_module.obj (.text:configureTimer2)
+                  00082655    00000034     s_board_adc.obj (.text:initEPWM)
+                  00082689    00000033     driverlib.lib : mcan.obj (.text:MCAN_enableIntr)
+                  000826bc    00000033                   : mcan.obj (.text:MCAN_selectIntrLine)
+                  000826ef    00000032     timer_module.obj (.text:cpuTimer2ISR)
+                  00082721    00000031     driverlib.lib : gpio.obj (.text:GPIO_setDirectionMode)
+                  00082752    00000030     rts2800_fpu32_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss)
+                  00082782    0000002f     board.obj (.text:ADC_setInterruptSource)
+                  000827b1    0000002e     board.obj (.text:ADC_setInterruptSOCTrigger)
+                  000827df    0000002e     s_board_adc.obj (.text:adc_init)
+                  0008280d    0000002e     timer_module.obj (.text:initCPUTimers)
+                  0008283b    0000002c     driverlib.lib : mcan.obj (.text:MCAN_txBufAddReq)
+                  00082867    0000002b     rts2800_fpu32_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit)
+                  00082892    00000029     driverlib.lib : mcan.obj (.text:MCAN_enableIntrLine)
+                  000828bb    00000029     board_module.obj (.text:SysCtl_setMCANClk)
+                  000828e4    00000029     rts2800_fpu32_eabi.lib : exit.c.obj (.text)
+                  0008290d    00000001                            : startup.c.obj (.text)
+                  0008290e    00000027                            : e_sqrtf.c.obj (.text)
+                  00082935    00000025     driverlib.lib : sysctl.obj (.text:SysCtl_selectXTALSingleEnded)
+                  0008295a    00000025     s_board_adc.obj (.text:dww_Loadper_Calc)
+                  0008297f    00000025     board_module.obj (.text:readCANAddress)
+                  000829a4    00000024     driverlib.lib : sysctl.obj (.text:DCC_enableSingleShotMode)
+                  000829c8    00000023     board_module.obj (.text:GPIO_isPinValid)
+                  000829eb    00000023     driverlib.lib : gpio.obj (.text:GPIO_isPinValid)
+                  00082a0e    00000023     board_module.obj (.text:GPIO_readPin)
+                  00082a31    00000022     s_board_adc.obj (.text:ADC_readResult)
+                  00082a53    00000022     s_board_adc.obj (.text:EPWM_setCounterCompareValue)
+                  00082a75    00000022     rts2800_fpu32_eabi.lib : i_div28.asm.obj (.text)
+                  00082a97    00000021     board.obj (.text:ADC_disableContinuousMode)
+                  00082ab8    00000020     board.obj (.text:ADC_enableInterrupt)
+                  00082ad8    0000001f     s_board_adc.obj (.text:ADC_getInterruptOverflowStatus)
+                  00082af7    0000001f     board.obj (.text:ADC_isBaseValid)
+                  00082b16    0000001f     driverlib.lib : adc.obj (.text:ADC_isBaseValid)
+                  00082b35    0000001f     s_board_adc.obj (.text:ADC_isBaseValid)
+                  00082b54    0000001f     driverlib.lib : mcan.obj (.text:MCAN_clearNewDataStatus)
+                  00082b73    0000001f                   : mcan.obj (.text:MCAN_isMemInitDone)
+                  00082b92    0000001f     timer_module.obj (.text:initFrameTracking)
+                  00082bb1    0000001e     driverlib.lib : sysctl.obj (.text:DCC_setCounter0ClkSource)
+                  00082bcf    0000001e                   : sysctl.obj (.text:DCC_setCounter1ClkSource)
+                  00082bed    0000001e                   : interrupt.obj (.text:Interrupt_initVectorTable)
+                  00082c0b    0000001d                   : asysctl.obj (.text:ASysCtl_setAnalogReferenceInternal)
+                  00082c28    0000001d                   : mcan.obj (.text:MCAN_getNewDataStatus)
+                  00082c45    0000001d     rts2800_fpu32_eabi.lib : memcpy.c.obj (.text)
+                  00082c62    0000001c     board.obj (.text:ADC_setSOCPriority)
+                  00082c7e    0000001c     s_board_adc.obj (.text:EPWM_disableADCTrigger)
+                  00082c9a    0000001c     s_board_adc.obj (.text:EPWM_enableADCTrigger)
+                  00082cb6    0000001c     s_board_adc.obj (.text:EPWM_setClockPrescaler)
+                  00082cd2    0000001c     s_board_adc.obj (.text:dww_timer)
+                  00082cee    0000001a     board_module.obj (.text:CPUTimer_startTimer)
+                  00082d08    0000001a     timer_module.obj (.text:CPUTimer_startTimer)
+                  00082d22    0000001a     device.obj (.text:Device_initGPIO)
+                  00082d3c    0000001a     driverlib.lib : mcan.obj (.text:MCAN_clearInterrupt)
+                  00082d56    0000001a                   : sysctl.obj (.text:SysCtl_getLowSpeedClock)
+                  00082d70    0000001a     board_module.obj (.text:handleDiscoveryProcess)
+                  00082d8a    0000001a     board_module.obj (.text:resetFrameTrackingVariables)
+                  00082da4    00000019     board.obj (.text:ASysCtl_setAnalogReference1P65)
+                  00082dbd    00000019     driverlib.lib : mcan.obj (.text:MCAN_setOpMode)
+                  00082dd6    00000019                   : mcan.obj (.text:MCAN_writeProtectedRegAccessLock)
+                  00082def    00000019                   : mcan.obj (.text:MCAN_writeProtectedRegAccessUnlock)
+                  00082e08    00000019                   : sysctl.obj (.text:SysCtl_setPLLSysClk)
+                  00082e21    00000019     board_module.obj (.text:handleGainRetransmission)
+                  00082e3a    00000018     s_board_adc.obj (.text:EPWM_setPeriodLoadMode)
+                  00082e52    00000017     s_board_adc.obj (.text:ADC_clearInterruptOverflowStatus)
+                  00082e69    00000017     board.obj (.text:ADC_clearInterruptStatus)
+                  00082e80    00000017     s_board_adc.obj (.text:ADC_clearInterruptStatus)
+                  00082e97    00000017     board_module.obj (.text:CPUTimer_isBaseValid)
+                  00082eae    00000017     can_module.obj (.text:CPUTimer_isBaseValid)
+                  00082ec5    00000017     driverlib.lib : cputimer.obj (.text:CPUTimer_isBaseValid)
+                  00082edc    00000017     timer_module.obj (.text:CPUTimer_isBaseValid)
+                  00082ef3    00000017     timer_module.obj (.text:CPUTimer_setPreScaler)
+                  00082f0a    00000017     driverlib.lib : mcan.obj (.text:HW_WR_FIELD32_RAW)
+                  00082f21    00000017                   : mcan.obj (.text:MCAN_getOpMode)
+                  00082f38    00000017                   : pga.obj (.text:PGA_isBaseValid)
+                  00082f4f    00000017     device.obj (.text:SysCtl_enablePeripheral)
+                  00082f66    00000017     driverlib.lib : sysctl.obj (.text:SysCtl_enablePeripheral)
+                  00082f7d    00000017     rts2800_fpu32_eabi.lib : boot28.asm.obj (.text)
+                  00082f94    00000016     board.obj (.text:ADC_setInterruptPulseMode)
+                  00082faa    00000016     board.obj (.text:ADC_setPrescaler)
+                  00082fc0    00000016     driverlib.lib : sysctl.obj (.text:DCC_disableDoneSignal)
+                  00082fd6    00000016                   : interrupt.obj (.text:Interrupt_defaultHandler)
+                  00082fec    00000015     board.obj (.text:ADC_disableBurstMode)
+                  00083001    00000015     timer_module.obj (.text:CPUTimer_enableInterrupt)
+                  00083016    00000015     driverlib.lib : sysctl.obj (.text:DCC_clearDoneFlag)
+                  0008302b    00000015                   : sysctl.obj (.text:DCC_clearErrorFlag)
+                  00083040    00000015                   : sysctl.obj (.text:DCC_disableErrorSignal)
+                  00083055    00000015                   : sysctl.obj (.text:DCC_isBaseValid)
+                  0008306a    00000015     device.obj (.text:GPIO_unlockPortConfig)
+                  0008307f    00000015     driverlib.lib : mcan.obj (.text:MCAN_clearIntrStatus)
+                  00083094    00000015                   : mcan.obj (.text:MCAN_isBaseValid)
+                  000830a9    00000015     s_board_adc.obj (.text:configureGPIO28)
+                  000830be    00000015     can_module.obj (.text:processDiscoveryAck)
+                  000830d3    00000014     board_module.obj (.text:CPUTimer_reloadTimerCounter)
+                  000830e7    00000014     timer_module.obj (.text:CPUTimer_reloadTimerCounter)
+                  000830fb    00000014     board_module.obj (.text:CPUTimer_stopTimer)
+                  0008310f    00000014     can_module.obj (.text:CPUTimer_stopTimer)
+                  00083123    00000014     timer_module.obj (.text:CPUTimer_stopTimer)
+                  00083137    00000014     driverlib.lib : sysctl.obj (.text:DCC_disableModule)
+                  0008314b    00000014                   : sysctl.obj (.text:DCC_enableModule)
+                  0008315f    00000014     s_board_adc.obj (.text:EPWM_setTimeBaseCounterMode)
+                  00083173    00000014     s_board_adc.obj (.text:EPWM_setTimeBasePeriod)
+                  00083187    00000014     driverlib.lib : mcan.obj (.text:MCAN_getDataSize)
+                  0008319b    00000014                   : mcan.obj (.text:MCAN_getMsgObjSize)
+                  000831af    00000014     timer_module.obj (.text:startDiscoveryTimer)
+                  000831c3    00000013     board.obj (.text:ADC_enableAltDMATiming)
+                  000831d6    00000013     board.obj (.text:ADC_enableConverter)
+                  000831e9    00000013     driverlib.lib : cputimer.obj (.text:CPUTimer_setEmulationMode)
+                  000831fc    00000013     can_module.obj (.text:MCANIntrConfig)
+                  0008320f    00000013     driverlib.lib : mcan.obj (.text:MCAN_getIntrStatus)
+                  00083222    00000013                   : mcan.obj (.text:MCAN_getTxBufReqPend)
+                  00083235    00000013     runtime.obj (.text:isVoltageDataComplete)
+                  00083248    00000012     s_board_adc.obj (.text:EPWM_setTimeBaseCounter)
+                  0008325a    00000011     timer_module.obj (.text:CPUTimer_setPeriod)
+                  0008326b    00000011     board_module.obj (.text:resetDiscoveryFlags)
+                  0008327c    00000010     driverlib.lib : flash.obj (.text:Flash_isCtrlBaseValid)
+                  0008328c    00000010                   : flash.obj (.text:Flash_isECCBaseValid)
+                  0008329c    0000000f     board.obj (.text:Interrupt_register)
+                  000832ab    0000000f     can_module.obj (.text:Interrupt_register)
+                  000832ba    0000000f     timer_module.obj (.text:Interrupt_register)
+                  000832c9    0000000f     board_module.obj (.text:readDIPSwitch)
+                  000832d8    0000000d     driverlib.lib : mcan.obj (.text:HW_RD_FIELD32_RAW)
+                  000832e5    0000000d     board.obj (.text:INTERRUPT_init)
+                  000832f2    0000000d     driverlib.lib : interrupt.obj (.text:Interrupt_disableGlobal)
+                  000832ff    0000000d     can_module.obj (.text:Interrupt_enableGlobal)
+                  0008330c    0000000d     driverlib.lib : interrupt.obj (.text:Interrupt_enableGlobal)
+                  00083319    0000000d     device.obj (.text:SysCtl_setLowSpeedClock)
+                  00083326    0000000d     utilities.obj (.text:initializePDUManager)
+                  00083333    0000000c     s_board_adc.obj (.text:adc_start_process)
+                  0008333f    0000000c     can_module.obj (.text:processGainAcknowledgment)
+                  0008334b    0000000c     rts2800_fpu32_eabi.lib : args_main.c.obj (.text)
+                  00083357    0000000c     timer_module.obj (.text:startGainTransmissionRetry)
+                  00083363    0000000b     board.obj (.text:Board_init)
+                  0008336e    0000000b     device.obj (.text:SysCtl_disableWatchdog)
+                  00083379    0000000b     driverlib.lib : sysctl.obj (.text:SysCtl_isMCDClockFailureDetected)
+                  00083384    0000000b     utilities.obj (.text:syncReadWriteToWorking)
+                  0008338f    0000000a     board.obj (.text:ASYSCTL_init)
+                  00083399    0000000a     driverlib.lib : interrupt.obj (.text:Interrupt_illegalOperationHandler)
+                  000833a3    0000000a                   : interrupt.obj (.text:Interrupt_nmiHandler)
+                  000833ad    00000009     rts2800_fpu32_eabi.lib : _lock.c.obj (.text)
+                  000833b6    00000009     runtime.obj (.text:syncVoltageData)
+                  000833bf    00000008     flash_module.obj (.text:Example_Error)
+                  000833c7    00000008     rts2800_fpu32_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none)
+                  000833cf    00000008     f28p55x_codestartbranch.obj (.text)
+                  000833d7    00000007     board.obj (.text:ASysCtl_disableTemperatureSensor)
+                  000833de    00000007     device.obj (.text:ASysCtl_lockVREG)
+                  000833e5    00000007     driverlib.lib : mcan.obj (.text:HW_RD_REG32_RAW)
+                  000833ec    00000007                   : mcan.obj (.text:HW_WR_REG32_RAW)
+                  000833f3    00000007                   : sysctl.obj (.text:SysCtl_resetMCD)
+                  000833fa    00000007     rts2800_fpu32_eabi.lib : memset.c.obj (.text)
+                  00083401    00000006     can_module.obj (.text:Interrupt_clearACKGroup)
+                  00083407    00000006     s_board_adc.obj (.text:Interrupt_clearACKGroup)
+                  0008340d    00000006     timer_module.obj (.text:Interrupt_clearACKGroup)
+                  00083413    00000006     rts2800_fpu32_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI)
+                  00083419    00000005     board.obj (.text:ADC_init)
+                  0008341e    00000005     flash_module.obj (.text:FMSTAT_Fail)
+                  00083423    00000005     device.obj (.text:__error__)
+                  00083428    00000004     flash_module.obj (.text:Example_Done)
+                  0008342c    00000002     rts2800_fpu32_eabi.lib : pre_init.c.obj (.text)
 
 MODULE SUMMARY
 
@@ -403,7 +410,7 @@ MODULE SUMMARY
     .\
        adc_ex2_soc_epwm.obj          194     0         5856   
        can_module.obj                2068    328       133    
-       s_board_adc.obj               1119    136       330    
+       s_board_adc.obj               1441    136       290    
        runtime.obj                   261     0         1249   
        board_module.obj              720     140       2      
        flash_module.obj              764     38        0      
@@ -411,7 +418,7 @@ MODULE SUMMARY
        timer_module.obj              516     72        4      
        bu_runtime.obj                164     0         270    
     +--+-----------------------------+-------+---------+---------+
-       Total:                        6246    970       7844   
+       Total:                        6568    970       7804   
                                                               
     .\device\
        device.obj                    519     89        0      
@@ -470,21 +477,21 @@ MODULE SUMMARY
        Total:                        438     0         11     
                                                               
        Stack:                        0       0         512    
-       Linker Generated:             0       110       0      
+       Linker Generated:             0       80        0      
     +--+-----------------------------+-------+---------+---------+
-       Grand Total:                  16980   2230      8415   
+       Grand Total:                  17302   2200      8375   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0008435e records: 2, size/record: 4, table size: 8
-	.data: load addr=000842f8, load size=0000005c bytes, run addr=0000a800, run size=000000de bytes, compression=lzss
-	.bss: load addr=0008435a, load size=00000004 bytes, run addr=0000e000, run size=00001e0d bytes, compression=zero_init
+__TI_cinit_table @ 00084480 records: 2, size/record: 4, table size: 8
+	.data: load addr=00084438, load size=0000003e bytes, run addr=0000a800, run size=00000090 bytes, compression=lzss
+	.bss: load addr=0008447c, load size=00000004 bytes, run addr=0000e000, run size=00001e32 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00084354 records: 3, size/record: 2, table size: 6
+__TI_handler_table @ 00084476 records: 3, size/record: 2, table size: 6
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -494,96 +501,58 @@ GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
 
 address     data page           name
 --------    ----------------    ----
-0000a800     2a0 (0000a800)     Volt_Lack_flag
-0000a801     2a0 (0000a800)     Volt_Unbalance_flag
-0000a802     2a0 (0000a800)     Phase_loss_flag
-0000a803     2a0 (0000a800)     Phase_Seq_flag
-0000a804     2a0 (0000a800)     buff_cntr
-0000a805     2a0 (0000a800)     index
-0000a806     2a0 (0000a800)     reversal_detected
-0000a807     2a0 (0000a800)     last_sample_R
-0000a808     2a0 (0000a800)     last_sample_Y
-0000a809     2a0 (0000a800)     last_sample_B
-0000a80a     2a0 (0000a800)     zcd_detected_R
-0000a80b     2a0 (0000a800)     zcd_detected_Y
-0000a80c     2a0 (0000a800)     zcd_detected_B
-0000a80d     2a0 (0000a800)     a
-0000a80e     2a0 (0000a800)     sampleCount
-0000a810     2a0 (0000a800)     calib
-0000a812     2a0 (0000a800)     sampleindex
-0000a814     2a0 (0000a800)     theta_zp
-0000a816     2a0 (0000a800)     frequency
-0000a818     2a0 (0000a800)     lasttimestamp_R
-0000a81a     2a0 (0000a800)     currenttimestamp_R
-0000a81c     2a0 (0000a800)     lasttimestamp_Y
-0000a81e     2a0 (0000a800)     lasttimestamp_B
-0000a820     2a0 (0000a800)     currenttimestamp_Y
-0000a822     2a0 (0000a800)     currenttimestamp_B
-0000a824     2a0 (0000a800)     offset_value
-0000a826     2a0 (0000a800)     wGain_Kw_pri
-0000a828     2a0 (0000a800)     wGain_Kw_sec
-0000a82a     2a0 (0000a800)     calib_pri_R
-0000a82c     2a0 (0000a800)     calib_pri_Y
-0000a82e     2a0 (0000a800)     calib_pri_B
-0000a830     2a0 (0000a800)     calib_kw_pri
-0000a832     2a0 (0000a800)     calib_sec_R
-0000a834     2a0 (0000a800)     calib_sec_Y
-0000a836     2a0 (0000a800)     calib_sec_B
-0000a838     2a0 (0000a800)     calib_curr_pri_r
-0000a83a     2a0 (0000a800)     calib_curr_pri_y
-0000a83c     2a0 (0000a800)     calib_curr_pri_b
-0000a83e     2a0 (0000a800)     calib_curr_sec_r
+0000a800     2a0 (0000a800)     dwSumPhaseVolt
 
-0000a840     2a1 (0000a840)     calib_curr_sec_y
-0000a842     2a1 (0000a840)     calib_curr_sec_b
-0000a864     2a1 (0000a840)     dwSumPhaseWatt
+0000a844     2a1 (0000a840)     newestData
+0000a845     2a1 (0000a840)     oldestData
+0000a846     2a1 (0000a840)     emptySectorFound
+0000a847     2a1 (0000a840)     flashWriteEnabled
+0000a848     2a1 (0000a840)     CommandReceived
+0000a849     2a1 (0000a840)     updateFailed
+0000a84a     2a1 (0000a840)     bufferFull
+0000a84b     2a1 (0000a840)     discoveryInProgress
+0000a84c     2a1 (0000a840)     discoveryAckReceived
+0000a84d     2a1 (0000a840)     timerExpired
+0000a84e     2a1 (0000a840)     allFramesReceived
+0000a84f     2a1 (0000a840)     requestRetransmission
+0000a850     2a1 (0000a840)     receivedFramesMask
+0000a851     2a1 (0000a840)     retryCounter
+0000a852     2a1 (0000a840)     discoveryRetryCount
+0000a854     2a1 (0000a840)     Buffer32
+0000a856     2a1 (0000a840)     addressToWrite
+0000a858     2a1 (0000a840)     writeAddress
+0000a85a     2a1 (0000a840)     readAddress
+0000a86c     2a1 (0000a840)     voltageDataReady
+0000a86d     2a1 (0000a840)     voltageFrameReceived
+0000a86e     2a1 (0000a840)     allVoltagesReceived
+0000a875     2a1 (0000a840)     errno
+0000a876     2a1 (0000a840)     __TI_enable_exit_profile_output
+0000a878     2a1 (0000a840)     __TI_cleanup_ptr
+0000a87a     2a1 (0000a840)     __TI_dtors_ptr
+0000a87c     2a1 (0000a840)     firstBUFrameReceived
+0000a87d     2a1 (0000a840)     secondBUFrameReceived
+0000a87e     2a1 (0000a840)     sequenceStarted
 
-0000a880     2a2 (0000a880)     newestData
-0000a881     2a2 (0000a880)     oldestData
-0000a882     2a2 (0000a880)     emptySectorFound
-0000a883     2a2 (0000a880)     flashWriteEnabled
-0000a884     2a2 (0000a880)     CommandReceived
-0000a885     2a2 (0000a880)     updateFailed
-0000a886     2a2 (0000a880)     bufferFull
-0000a887     2a2 (0000a880)     discoveryInProgress
-0000a888     2a2 (0000a880)     discoveryAckReceived
-0000a889     2a2 (0000a880)     timerExpired
-0000a88a     2a2 (0000a880)     allFramesReceived
-0000a88b     2a2 (0000a880)     requestRetransmission
-0000a88c     2a2 (0000a880)     receivedFramesMask
-0000a88d     2a2 (0000a880)     retryCounter
-0000a88e     2a2 (0000a880)     discoveryRetryCount
-0000a890     2a2 (0000a880)     Buffer32
-0000a892     2a2 (0000a880)     addressToWrite
-0000a894     2a2 (0000a880)     writeAddress
-0000a896     2a2 (0000a880)     readAddress
-0000a8a8     2a2 (0000a880)     dwSumPhaseCurr
-0000a8b6     2a2 (0000a880)     dwSumPhaseVolt
-
-0000a8c2     2a3 (0000a8c0)     voltageDataReady
-0000a8c3     2a3 (0000a8c0)     voltageFrameReceived
-0000a8c4     2a3 (0000a8c0)     allVoltagesReceived
-0000a8cb     2a3 (0000a8c0)     errno
-0000a8cc     2a3 (0000a8c0)     __TI_enable_exit_profile_output
-0000a8ce     2a3 (0000a8c0)     __TI_cleanup_ptr
-0000a8d0     2a3 (0000a8c0)     __TI_dtors_ptr
-0000a8d2     2a3 (0000a8c0)     firstBUFrameReceived
-0000a8d3     2a3 (0000a8c0)     secondBUFrameReceived
-0000a8d4     2a3 (0000a8c0)     sequenceStarted
-0000a8d5     2a3 (0000a8c0)     timer2Expired
-0000a8d6     2a3 (0000a8c0)     gainAckReceived
-0000a8d7     2a3 (0000a8c0)     retryCount
-0000a8d8     2a3 (0000a8c0)     _lock
-0000a8da     2a3 (0000a8c0)     _unlock
+0000a880     2a2 (0000a880)     sampleCount
+0000a881     2a2 (0000a880)     count
+0000a882     2a2 (0000a880)     syncSignalReceived
+0000a883     2a2 (0000a880)     a
+0000a884     2a2 (0000a880)     calib
+0000a886     2a2 (0000a880)     timer2Expired
+0000a887     2a2 (0000a880)     gainAckReceived
+0000a888     2a2 (0000a880)     retryCount
+0000a88a     2a2 (0000a880)     _lock
+0000a88c     2a2 (0000a880)     _unlock
 
 0000c7b8     31e (0000c780)     __stack
 
 0000e000     380 (0000e000)     rxFIFO0Msg
 
 0000e6e4     39b (0000e6c0)     myADC0Results
-0000e6f6     39b (0000e6c0)     frameCounter
-0000e6f7     39b (0000e6c0)     error
-0000e6f8     39b (0000e6c0)     cpuTimer1IntCount
+0000e6f6     39b (0000e6c0)     wDemandSumCntr
+0000e6fa     39b (0000e6c0)     frameCounter
+0000e6fb     39b (0000e6c0)     error
+0000e6fc     39b (0000e6c0)     cpuTimer1IntCount
 
 0000e700     39c (0000e700)     runtimeVoltageData
 
@@ -599,42 +568,19 @@ address     data page           name
 
 0000faf0     3eb (0000fac0)     branchData
 
-0000fc00     3f0 (0000fc00)     i
-0000fc01     3f0 (0000fc00)     k
-0000fc02     3f0 (0000fc00)     vari
-0000fc03     3f0 (0000fc00)     Pri_Phase_RY
-0000fc04     3f0 (0000fc00)     Pri_Phase_YB
-0000fc05     3f0 (0000fc00)     Pri_Phase_BR
-0000fc06     3f0 (0000fc00)     Sec_Phase_RY
-0000fc07     3f0 (0000fc00)     Sec_Phase_YB
-0000fc08     3f0 (0000fc00)     Sec_Phase_BR
-0000fc09     3f0 (0000fc00)     countSample
-0000fc0a     3f0 (0000fc00)     avgSquare
-0000fc0c     3f0 (0000fc00)     rms
-0000fc0e     3f0 (0000fc00)     curr_square
-0000fc10     3f0 (0000fc00)     volt_square
-0000fc12     3f0 (0000fc00)     Vsum
-0000fc14     3f0 (0000fc00)     v_alpha
-0000fc16     3f0 (0000fc00)     v_beta
-0000fc18     3f0 (0000fc00)     last_sample_alpha
-0000fc1a     3f0 (0000fc00)     adc_r
-0000fc1c     3f0 (0000fc00)     adc_y
-0000fc1e     3f0 (0000fc00)     adc_b
-0000fc20     3f0 (0000fc00)     V_alpha_t
-0000fc22     3f0 (0000fc00)     V_beta_t
-0000fc24     3f0 (0000fc00)     V_alpha_next
-0000fc26     3f0 (0000fc00)     V_beta_next
-0000fc28     3f0 (0000fc00)     cross_product
-0000fc2a     3f0 (0000fc00)     theta_p
-0000fc2c     3f0 (0000fc00)     del_theta_p
-0000fc2e     3f0 (0000fc00)     timediff
-0000fc30     3f0 (0000fc00)     timeperiod
-0000fc32     3f0 (0000fc00)     kw_r
-0000fc34     3f0 (0000fc00)     kw_y
-0000fc36     3f0 (0000fc00)     kw_b
-0000fc38     3f0 (0000fc00)     kw_r_sec
-0000fc3a     3f0 (0000fc00)     kw_y_sec
-0000fc3c     3f0 (0000fc00)     kw_b_sec
+0000fc00     3f0 (0000fc00)     k
+0000fc01     3f0 (0000fc00)     struct_size
+0000fc02     3f0 (0000fc00)     max_curr
+0000fc04     3f0 (0000fc00)     demand_chk_1sec
+0000fc05     3f0 (0000fc00)     demand_chk_1hr
+0000fc06     3f0 (0000fc00)     demand_chk_24hr
+0000fc07     3f0 (0000fc00)     dww_RMS_Current
+0000fc08     3f0 (0000fc00)     root
+0000fc09     3f0 (0000fc00)     pinstate
+0000fc0a     3f0 (0000fc00)     pinState
+0000fc0b     3f0 (0000fc00)     countSample
+0000fc0c     3f0 (0000fc00)     dwwMathBuff
+0000fc0e     3f0 (0000fc00)     sFlag
 
 0000fc40     3f1 (0000fc40)     Branch
 
@@ -649,30 +595,32 @@ address     data page           name
 
 0000fdcd     3f7 (0000fdc0)     secondBUFrameData
 
+0000fe0e     3f8 (0000fe00)     dw_CurrDemandSum
+
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
 
 page  address   name                              
 ----  -------   ----                              
-0     000832d2  ADC_init                          
-0     00082313  ADC_setVREF                       
-0     00083248  ASYSCTL_init                      
-0     00082aec  ASysCtl_setAnalogReferenceInternal
-0     0008321c  Board_init                        
+0     00083419  ADC_init                          
+0     000823de  ADC_setVREF                       
+0     0008338f  ASYSCTL_init                      
+0     00082c0b  ASysCtl_setAnalogReferenceInternal
+0     00083363  Board_init                        
 0     0000fc40  Branch                            
 0     0000ebd8  Buffer                            
-0     0000a890  Buffer32                          
-0     000827eb  C$$EXIT                           
-0     000830ae  CPUTimer_setEmulationMode         
+0     0000a854  Buffer32                          
+0     000828e4  C$$EXIT                           
+0     000831e9  CPUTimer_setEmulationMode         
 0     0000c726  ClearFSMStatus                    
-0     0000a884  CommandReceived                   
+0     0000a848  CommandReceived                   
 0     00080e00  Device_enableAllPeripherals       
 0     00080ed8  Device_init                       
-0     00082be7  Device_initGPIO                   
-0     000832e1  Example_Done                      
+0     00082d22  Device_initGPIO                   
+0     00083428  Example_Done                      
 0     0000c675  Example_EraseSector               
-0     00083278  Example_Error                     
-0     000832d7  FMSTAT_Fail                       
+0     000833bf  Example_Error                     
+0     0008341e  FMSTAT_Fail                       
 0     0000c5a6  Fapi_CheckLinkPointers            
 0     0000c5f8  Fapi_checkFsmForReady             
 0     0000c562  Fapi_checkRegionForValue          
@@ -695,364 +643,271 @@ page  address   name
 0     0000c707  FlashAPI_init                     
 0     0000c6af  Flash_initModule                  
 0     00080d15  GPIO_setAnalogMode                
-0     00082656  GPIO_setDirectionMode             
-0     00081ebb  GPIO_setPadConfig                 
-0     0008247a  GPIO_setPinConfig                 
-0     000824b1  GPIO_setQualificationMode         
-0     00082441  GPIO_setQualificationPeriod       
-0     000831aa  INTERRUPT_init                    
-0     00082e9b  Interrupt_defaultHandler          
-0     000824e8  Interrupt_enable                  
-0     00083252  Interrupt_illegalOperationHandler 
-0     0008238f  Interrupt_initModule              
-0     00082ace  Interrupt_initVectorTable         
-0     0008325c  Interrupt_nmiHandler              
+0     00082721  GPIO_setDirectionMode             
+0     00081fd8  GPIO_setPadConfig                 
+0     00082545  GPIO_setPinConfig                 
+0     0008257c  GPIO_setQualificationMode         
+0     0008250c  GPIO_setQualificationPeriod       
+0     000832e5  INTERRUPT_init                    
+0     00082fd6  Interrupt_defaultHandler          
+0     000825b3  Interrupt_enable                  
+0     00083399  Interrupt_illegalOperationHandler 
+0     0008245a  Interrupt_initModule              
+0     00082bed  Interrupt_initVectorTable         
+0     000833a3  Interrupt_nmiHandler              
 0     00080499  MCANConfig                        
 0     00080b2d  MCANIntr1ISR                      
-0     000830c1  MCANIntrConfig                    
-0     00081fb0  MCAN_addStdMsgIDFilter            
-0     00082c01  MCAN_clearInterrupt               
-0     00082f44  MCAN_clearIntrStatus              
-0     00082a35  MCAN_clearNewDataStatus           
-0     000825be  MCAN_enableIntr                   
-0     00082799  MCAN_enableIntrLine               
-0     000830d4  MCAN_getIntrStatus                
-0     00083060  MCAN_getMsgObjSize                
-0     00082b09  MCAN_getNewDataStatus             
-0     00082de6  MCAN_getOpMode                    
-0     000816ab  MCAN_getRxFIFOStatus              
-0     000830e7  MCAN_getTxBufReqPend              
+0     000831fc  MCANIntrConfig                    
+0     0008207b  MCAN_addStdMsgIDFilter            
+0     00082d3c  MCAN_clearInterrupt               
+0     0008307f  MCAN_clearIntrStatus              
+0     00082b54  MCAN_clearNewDataStatus           
+0     00082689  MCAN_enableIntr                   
+0     00082892  MCAN_enableIntrLine               
+0     0008320f  MCAN_getIntrStatus                
+0     0008319b  MCAN_getMsgObjSize                
+0     00082c28  MCAN_getNewDataStatus             
+0     00082f21  MCAN_getOpMode                    
+0     000817c8  MCAN_getRxFIFOStatus              
+0     00083222  MCAN_getTxBufReqPend              
 0     00080c25  MCAN_init                         
-0     00082a54  MCAN_isMemInitDone                
+0     00082b73  MCAN_isMemInitDone                
 0     00080008  MCAN_msgRAMConfig                 
 0     000812ff  MCAN_readMsgRam                   
-0     000825f1  MCAN_selectIntrLine               
+0     000826bc  MCAN_selectIntrLine               
 0     0008105f  MCAN_setBitTime                   
-0     00082c82  MCAN_setOpMode                    
-0     00082742  MCAN_txBufAddReq                  
-0     00081e64  MCAN_writeMsgRam                  
-0     00081db2  MCAN_writeRxFIFOAck               
-0     00082293  PGA_setOffsetTrimNMOS             
-0     0008224f  PGA_setOffsetTrimPMOS             
-0     0000a803  Phase_Seq_flag                    
-0     0000a802  Phase_loss_flag                   
+0     00082dbd  MCAN_setOpMode                    
+0     0008283b  MCAN_txBufAddReq                  
+0     00081f81  MCAN_writeMsgRam                  
+0     00081ecf  MCAN_writeRxFIFOAck               
+0     0008235e  PGA_setOffsetTrimNMOS             
+0     0008231a  PGA_setOffsetTrimPMOS             
 0     00080344  PinMux_init                       
-0     0000fc05  Pri_Phase_BR                      
-0     0000fc03  Pri_Phase_RY                      
-0     0000fc04  Pri_Phase_YB                      
-abs   000842f7  RamfuncsLoadEnd                   
+abs   00084437  RamfuncsLoadEnd                   
 abs   000007b7  RamfuncsLoadSize                  
-abs   00083b40  RamfuncsLoadStart                 
+abs   00083c80  RamfuncsLoadStart                 
 abs   0000c7b7  RamfuncsRunEnd                    
 abs   000007b7  RamfuncsRunSize                   
 abs   0000c000  RamfuncsRunStart                  
-0     0000fc08  Sec_Phase_BR                      
-0     0000fc06  Sec_Phase_RY                      
-0     0000fc07  Sec_Phase_YB                      
 0     0000c7b3  SysCtl_delay                      
-0     00081c36  SysCtl_getClock                   
-0     00082c1b  SysCtl_getLowSpeedClock           
+0     00081d53  SysCtl_getClock                   
+0     00082d56  SysCtl_getLowSpeedClock           
 0     00080a2f  SysCtl_isPLLValid                 
-0     00082137  SysCtl_selectOscSource            
-0     000821c4  SysCtl_selectXTAL                 
-0     0008283b  SysCtl_selectXTALSingleEnded      
+0     00082202  SysCtl_selectOscSource            
+0     0008228f  SysCtl_selectXTAL                 
+0     00082935  SysCtl_selectXTALSingleEnded      
 0     000805c5  SysCtl_setClock                   
-0     0000fc24  V_alpha_next                      
-0     0000fc20  V_alpha_t                         
-0     0000fc26  V_beta_next                       
-0     0000fc22  V_beta_t                          
-0     0000a800  Volt_Lack_flag                    
-0     0000a801  Volt_Unbalance_flag               
-0     0000fc12  Vsum                              
 0     0000c518  Write_32                          
 0     0000c4ee  Write_32bp                        
-0     0008435e  __TI_CINIT_Base                   
-0     00084366  __TI_CINIT_Limit                  
-0     00084366  __TI_CINIT_Warm                   
-0     00084354  __TI_Handler_Table_Base           
-0     0008435a  __TI_Handler_Table_Limit          
+0     00084480  __TI_CINIT_Base                   
+0     00084488  __TI_CINIT_Limit                  
+0     00084488  __TI_CINIT_Warm                   
+0     00084476  __TI_Handler_Table_Base           
+0     0008447c  __TI_Handler_Table_Limit          
 0     0000c9b8  __TI_STACK_END                    
 abs   00000200  __TI_STACK_SIZE                   
-0     0008276e  __TI_auto_init_nobinit_nopinit    
-0     0000a8ce  __TI_cleanup_ptr                  
-0     00082687  __TI_decompress_lzss              
-0     00083280  __TI_decompress_none              
-0     0000a8d0  __TI_dtors_ptr                    
-0     0000a8cc  __TI_enable_exit_profile_output   
+0     00082867  __TI_auto_init_nobinit_nopinit    
+0     0000a878  __TI_cleanup_ptr                  
+0     00082752  __TI_decompress_lzss              
+0     000833c7  __TI_decompress_none              
+0     0000a87a  __TI_dtors_ptr                    
+0     0000a876  __TI_enable_exit_profile_output   
 abs   ffffffff  __TI_pprof_out_hndl               
 abs   ffffffff  __TI_prof_data_size               
 abs   ffffffff  __TI_prof_data_start              
-0     000832cc  __TI_zero_init                    
-0     00081422  __c28xabi_divf                    
-0     00082956  __c28xabi_divi                    
-0     00082967  __c28xabi_modi                    
+0     00083413  __TI_zero_init                    
+0     0008153f  __c28xabi_divf                    
+0     00082a75  __c28xabi_divi                    
+0     00082a86  __c28xabi_modi                    
 n/a   UNDEFED   __c_args__                        
-0     000832dc  __error__                         
+0     00083423  __error__                         
 0     0000c7b8  __stack                           
-0     00083204  _args_main                        
-0     00082e42  _c_int00                          
-0     0000a8d8  _lock                             
-0     0008326e  _nop                              
-0     0008326a  _register_lock                    
-0     00083266  _register_unlock                  
-0     000832eb  _system_post_cinit                
-0     000832e9  _system_pre_init                  
-0     0000a8da  _unlock                           
-0     0000a80d  a                                 
-0     000827eb  abort                             
+0     0008334b  _args_main                        
+0     00082f7d  _c_int00                          
+0     0000a88a  _lock                             
+0     000833b5  _nop                              
+0     000833b1  _register_lock                    
+0     000833ad  _register_unlock                  
+0     0008290d  _system_post_cinit                
+0     0008342c  _system_pre_init                  
+0     0000a88c  _unlock                           
+0     0000a883  a                                 
+0     000828e4  abort                             
 0     000801ca  adcA1ISR                          
-0     0000fc1e  adc_b                             
-0     00081f0d  adc_init                          
-0     0000fc1a  adc_r                             
-0     000832e5  adc_start_process                 
-0     0000fc1c  adc_y                             
+0     000827df  adc_init                          
+0     00083333  adc_start_process                 
 0     0000fcc0  address                           
-0     0000a892  addressToWrite                    
-0     0000a88a  allFramesReceived                 
-0     0000a8c4  allVoltagesReceived               
-0     0000fc0a  avgSquare                         
+0     0000a856  addressToWrite                    
+0     0000a84e  allFramesReceived                 
+0     0000a86e  allVoltagesReceived               
 0     0000faf0  branchData                        
-0     0000a804  buff_cntr                         
-0     0000a886  bufferFull                        
-0     0000a810  calib                             
-0     00081a2e  calibDataUpdateFailAck            
-0     00081a96  calibDataUpdateSuccessAck         
-0     0000a83c  calib_curr_pri_b                  
-0     0000a838  calib_curr_pri_r                  
-0     0000a83a  calib_curr_pri_y                  
-0     0000a842  calib_curr_sec_b                  
-0     0000a83e  calib_curr_sec_r                  
-0     0000a840  calib_curr_sec_y                  
-0     0000a830  calib_kw_pri                      
-0     0000a82e  calib_pri_B                       
-0     0000a82a  calib_pri_R                       
-0     0000a82c  calib_pri_Y                       
-0     0000a836  calib_sec_B                       
-0     0000a832  calib_sec_R                       
-0     0000a834  calib_sec_Y                       
-0     000820ea  checkAddressChange                
+0     0000a84a  bufferFull                        
+0     0000a884  calib                             
+0     00081b4b  calibDataUpdateFailAck            
+0     00081bb3  calibDataUpdateSuccessAck         
+0     000821b5  checkAddressChange                
 0     00080000  code_start                        
-0     0008251f  configCPUTimer                    
-0     00082f6e  configureGPIO28                   
-0     00082555  configureTimer2                   
-0     0008180b  copyRxFIFO                        
-0     00081c9b  copyVoltageRxFIFO                 
-0     0000fc09  countSample                       
-0     0000e6f8  cpuTimer1IntCount                 
-0     00082624  cpuTimer2ISR                      
-0     0000fc28  cross_product                     
-0     0000fc0e  curr_square                       
-0     0000a822  currenttimestamp_B                
-0     0000a81a  currenttimestamp_R                
-0     0000a820  currenttimestamp_Y                
+0     000825ea  configCPUTimer                    
+0     000830a9  configureGPIO28                   
+0     00082620  configureTimer2                   
+0     00081928  copyRxFIFO                        
+0     00081db8  copyVoltageRxFIFO                 
+0     0000a881  count                             
+0     0000fc0b  countSample                       
+0     0000e6fc  cpuTimer1IntCount                 
+0     000826ef  cpuTimer2ISR                      
 0     0000fcc2  datasize                          
-0     0000fc2c  del_theta_p                       
-0     0000a888  discoveryAckReceived              
-0     0000a887  discoveryInProgress               
-0     0000a88e  discoveryRetryCount               
-0     0000a8a8  dwSumPhaseCurr                    
-0     0000a8b6  dwSumPhaseVolt                    
-0     0000a864  dwSumPhaseWatt                    
-0     0000a882  emptySectorFound                  
-0     0008204e  eraseBank4                        
-0     00082351  eraseSectorOrFindEmptySector      
-0     00081afe  erasedBank4Ack                    
-0     0000a8cb  errno                             
-0     0000e6f7  error                             
-0     000827ed  exit                              
-0     00081f5f  findReadAndWriteAddress           
+0     0000fc05  demand_chk_1hr                    
+0     0000fc04  demand_chk_1sec                   
+0     0000fc06  demand_chk_24hr                   
+0     0000a84c  discoveryAckReceived              
+0     0000a84b  discoveryInProgress               
+0     0000a852  discoveryRetryCount               
+0     0000a800  dwSumPhaseVolt                    
+0     0000fe0e  dw_CurrDemandSum                  
+0     0000fc0c  dwwMathBuff                       
+0     0008295a  dww_Loadper_Calc                  
+0     0000fc07  dww_RMS_Current                   
+0     000814b6  dww_demand_Calc                   
+0     00081397  dww_max_min_Calc                  
+0     00082cd2  dww_timer                         
+0     0000a846  emptySectorFound                  
+0     00082119  eraseBank4                        
+0     0008241c  eraseSectorOrFindEmptySector      
+0     00081c1b  erasedBank4Ack                    
+0     0000a875  errno                             
+0     0000e6fb  error                             
+0     000828e6  exit                              
+0     0008202a  findReadAndWriteAddress           
 0     0000fd4d  firstBUFrameData                  
-0     0000a8d2  firstBUFrameReceived              
-0     0000a883  flashWriteEnabled                 
-0     0000e6f6  frameCounter                      
-0     00081fff  frameTrackingTimerISR             
-0     0000a816  frequency                         
-0     0000a8d6  gainAckReceived                   
-0     00082c35  handleDiscoveryProcess            
-0     00082ce6  handleGainRetransmission          
+0     0000a87c  firstBUFrameReceived              
+0     0000a847  flashWriteEnabled                 
+0     0000e6fa  frameCounter                      
+0     000820ca  frameTrackingTimerISR             
+0     0000a887  gainAckReceived                   
+0     00082d70  handleDiscoveryProcess            
+0     00082e21  handleGainRetransmission          
 0     00081118  handleMissingFrames               
-0     0000fc00  i                                 
-0     0000a805  index                             
 0     000811bd  initBranchRuntime                 
-0     00082714  initCPUTimers                     
-0     0008209c  initDIPSwitchGPIO                 
-0     0008258a  initEPWM                          
-0     00082a73  initFrameTracking                 
-0     000831eb  initializePDUManager              
-0     000830fa  isVoltageDataComplete             
-0     0000fc01  k                                 
-0     0000fc36  kw_b                              
-0     0000fc3c  kw_b_sec                          
-0     0000fc32  kw_r                              
-0     0000fc38  kw_r_sec                          
-0     0000fc34  kw_y                              
-0     0000fc3a  kw_y_sec                          
-0     0000a809  last_sample_B                     
-0     0000a807  last_sample_R                     
-0     0000a808  last_sample_Y                     
-0     0000fc18  last_sample_alpha                 
-0     0000a81e  lasttimestamp_B                   
-0     0000a818  lasttimestamp_R                   
-0     0000a81c  lasttimestamp_Y                   
+0     0008280d  initCPUTimers                     
+0     00082167  initDIPSwitchGPIO                 
+0     00082655  initEPWM                          
+0     00082b92  initFrameTracking                 
+0     00083326  initializePDUManager              
+0     00083235  isVoltageDataComplete             
+0     0000fc00  k                                 
 0     00080f9d  main                              
-0     00081b66  maxRetriesExceeded                
-0     00082b26  memcpy                            
-0     000832b3  memset                            
+0     00081c83  maxRetriesExceeded                
+0     0000fc02  max_curr                          
+0     00082c45  memcpy                            
+0     000833fa  memset                            
 0     0000e6e4  myADC0Results                     
 0     0008080a  myADC0_init                       
-0     0008162e  myADC1_init                       
-0     0000a880  newestData                        
-0     0000a824  offset_value                      
-0     0000a881  oldestData                        
+0     0008174b  myADC1_init                       
+0     0000a844  newestData                        
+0     0000a845  oldestData                        
 0     0000fd00  pduManager                        
-0     0008195a  prepareFramesForTransmission      
-0     00081531  processBUBoardData                
+0     0000fc0a  pinState                          
+0     0000fc09  pinstate                          
+0     00081a77  prepareFramesForTransmission      
+0     0008164e  processBUBoardData                
 0     00081261  processBUFrames                   
-0     000822d4  processBUSpecificMessage          
-0     00082f83  processDiscoveryAck               
-0     000831f8  processGainAcknowledgment         
-0     00081397  processVoltageFrame               
-0     0000a896  readAddress                       
-0     00082860  readCANAddress                    
-0     0008318e  readDIPSwitch                     
+0     0008239f  processBUSpecificMessage          
+0     000830be  processDiscoveryAck               
+0     0008333f  processGainAcknowledgment         
+0     0008142b  processVoltageFrame               
+0     0000a85a  readAddress                       
+0     0008297f  readCANAddress                    
+0     000832c9  readDIPSwitch                     
 0     0000efd8  receivedBuffer                    
-0     0000a88c  receivedFramesMask                
-0     0000a88b  requestRetransmission             
-0     000814aa  resetCANModule                    
-0     00083130  resetDiscoveryFlags               
-0     00082c4f  resetFrameTrackingVariables       
+0     0000a850  receivedFramesMask                
+0     0000a84f  requestRetransmission             
+0     000815c7  resetCANModule                    
+0     0008326b  resetDiscoveryFlags               
+0     00082d8a  resetFrameTrackingVariables       
 0     0000fd8d  retransmissionData                
-0     0000a8d7  retryCount                        
-0     0000a88d  retryCounter                      
-0     0000a806  reversal_detected                 
-0     0000fc0c  rms                               
+0     0000a888  retryCount                        
+0     0000a851  retryCounter                      
+0     0000fc08  root                              
 0     0000e700  runtimeVoltageData                
 0     0000e000  rxFIFO0Msg                        
 0     0000f7a8  rxMsg                             
-0     0000a80e  sampleCount                       
-0     0000a812  sampleindex                       
+0     0000fc0e  sFlag                             
+0     0000a880  sampleCount                       
 0     0000fdcd  secondBUFrameData                 
-0     0000a8d3  secondBUFrameReceived             
-0     000818ed  sendBUFrameAcknowledgment         
-0     000819c4  sendCalibrationDataFormatVersion  
-0     00081cf9  sendDiscoveryMessage              
-0     0000a8d4  sequenceStarted                   
-0     00082814  sqrtf                             
-0     00083074  startDiscoveryTimer               
-0     00083210  startGainTransmissionRetry        
-0     00081d56  startupfunc                       
+0     0000a87d  secondBUFrameReceived             
+0     00081a0a  sendBUFrameAcknowledgment         
+0     00081ae1  sendCalibrationDataFormatVersion  
+0     00081e16  sendDiscoveryMessage              
+0     0000a87e  sequenceStarted                   
+0     0008290e  sqrtf                             
+0     000831af  startDiscoveryTimer               
+0     00083357  startGainTransmissionRetry        
+0     00081e73  startupfunc                       
 0     0000f3d8  storedFrames                      
-0     0008323d  syncReadWriteToWorking            
-0     0008326f  syncVoltageData                   
+0     0000fc01  struct_size                       
+0     00083384  syncReadWriteToWorking            
+0     0000a882  syncSignalReceived                
+0     000833b6  syncVoltageData                   
 0     0000e980  syncedVoltageData                 
-0     0000fc2a  theta_p                           
-0     0000a814  theta_zp                          
-0     0000fc2e  timediff                          
-0     0000fc30  timeperiod                        
-0     0000a8d5  timer2Expired                     
-0     0000a889  timerExpired                      
-0     0008187c  transmit                          
-0     000815b0  transmitGainFrames                
-0     0000a885  updateFailed                      
-0     0000fc14  v_alpha                           
-0     0000fc16  v_beta                            
-0     0000fc02  vari                              
-0     0000fc10  volt_square                       
-0     0000a8c2  voltageDataReady                  
-0     0000a8c3  voltageFrameReceived              
-0     0000a826  wGain_Kw_pri                      
-0     0000a828  wGain_Kw_sec                      
-0     0000a894  writeAddress                      
-0     00081e0c  writeDefaultCalibrationValues     
+0     0000a886  timer2Expired                     
+0     0000a84d  timerExpired                      
+0     00081999  transmit                          
+0     000816cd  transmitGainFrames                
+0     0000a849  updateFailed                      
+0     0000a86c  voltageDataReady                  
+0     0000a86d  voltageFrameReceived              
+0     0000e6f6  wDemandSumCntr                    
+0     0000a858  writeAddress                      
+0     00081f29  writeDefaultCalibrationValues     
 0     0000c60f  writeToFlash                      
-0     00081bce  writtenDefaultCalibrationValuesAck
-0     0000a80c  zcd_detected_B                    
-0     0000a80a  zcd_detected_R                    
-0     0000a80b  zcd_detected_Y                    
+0     00081ceb  writtenDefaultCalibrationValuesAck
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
 
 page  address   name                              
 ----  -------   ----                              
-0     0000a800  Volt_Lack_flag                    
-0     0000a801  Volt_Unbalance_flag               
-0     0000a802  Phase_loss_flag                   
-0     0000a803  Phase_Seq_flag                    
-0     0000a804  buff_cntr                         
-0     0000a805  index                             
-0     0000a806  reversal_detected                 
-0     0000a807  last_sample_R                     
-0     0000a808  last_sample_Y                     
-0     0000a809  last_sample_B                     
-0     0000a80a  zcd_detected_R                    
-0     0000a80b  zcd_detected_Y                    
-0     0000a80c  zcd_detected_B                    
-0     0000a80d  a                                 
-0     0000a80e  sampleCount                       
-0     0000a810  calib                             
-0     0000a812  sampleindex                       
-0     0000a814  theta_zp                          
-0     0000a816  frequency                         
-0     0000a818  lasttimestamp_R                   
-0     0000a81a  currenttimestamp_R                
-0     0000a81c  lasttimestamp_Y                   
-0     0000a81e  lasttimestamp_B                   
-0     0000a820  currenttimestamp_Y                
-0     0000a822  currenttimestamp_B                
-0     0000a824  offset_value                      
-0     0000a826  wGain_Kw_pri                      
-0     0000a828  wGain_Kw_sec                      
-0     0000a82a  calib_pri_R                       
-0     0000a82c  calib_pri_Y                       
-0     0000a82e  calib_pri_B                       
-0     0000a830  calib_kw_pri                      
-0     0000a832  calib_sec_R                       
-0     0000a834  calib_sec_Y                       
-0     0000a836  calib_sec_B                       
-0     0000a838  calib_curr_pri_r                  
-0     0000a83a  calib_curr_pri_y                  
-0     0000a83c  calib_curr_pri_b                  
-0     0000a83e  calib_curr_sec_r                  
-0     0000a840  calib_curr_sec_y                  
-0     0000a842  calib_curr_sec_b                  
-0     0000a864  dwSumPhaseWatt                    
-0     0000a880  newestData                        
-0     0000a881  oldestData                        
-0     0000a882  emptySectorFound                  
-0     0000a883  flashWriteEnabled                 
-0     0000a884  CommandReceived                   
-0     0000a885  updateFailed                      
-0     0000a886  bufferFull                        
-0     0000a887  discoveryInProgress               
-0     0000a888  discoveryAckReceived              
-0     0000a889  timerExpired                      
-0     0000a88a  allFramesReceived                 
-0     0000a88b  requestRetransmission             
-0     0000a88c  receivedFramesMask                
-0     0000a88d  retryCounter                      
-0     0000a88e  discoveryRetryCount               
-0     0000a890  Buffer32                          
-0     0000a892  addressToWrite                    
-0     0000a894  writeAddress                      
-0     0000a896  readAddress                       
-0     0000a8a8  dwSumPhaseCurr                    
-0     0000a8b6  dwSumPhaseVolt                    
-0     0000a8c2  voltageDataReady                  
-0     0000a8c3  voltageFrameReceived              
-0     0000a8c4  allVoltagesReceived               
-0     0000a8cb  errno                             
-0     0000a8cc  __TI_enable_exit_profile_output   
-0     0000a8ce  __TI_cleanup_ptr                  
-0     0000a8d0  __TI_dtors_ptr                    
-0     0000a8d2  firstBUFrameReceived              
-0     0000a8d3  secondBUFrameReceived             
-0     0000a8d4  sequenceStarted                   
-0     0000a8d5  timer2Expired                     
-0     0000a8d6  gainAckReceived                   
-0     0000a8d7  retryCount                        
-0     0000a8d8  _lock                             
-0     0000a8da  _unlock                           
+0     0000a800  dwSumPhaseVolt                    
+0     0000a844  newestData                        
+0     0000a845  oldestData                        
+0     0000a846  emptySectorFound                  
+0     0000a847  flashWriteEnabled                 
+0     0000a848  CommandReceived                   
+0     0000a849  updateFailed                      
+0     0000a84a  bufferFull                        
+0     0000a84b  discoveryInProgress               
+0     0000a84c  discoveryAckReceived              
+0     0000a84d  timerExpired                      
+0     0000a84e  allFramesReceived                 
+0     0000a84f  requestRetransmission             
+0     0000a850  receivedFramesMask                
+0     0000a851  retryCounter                      
+0     0000a852  discoveryRetryCount               
+0     0000a854  Buffer32                          
+0     0000a856  addressToWrite                    
+0     0000a858  writeAddress                      
+0     0000a85a  readAddress                       
+0     0000a86c  voltageDataReady                  
+0     0000a86d  voltageFrameReceived              
+0     0000a86e  allVoltagesReceived               
+0     0000a875  errno                             
+0     0000a876  __TI_enable_exit_profile_output   
+0     0000a878  __TI_cleanup_ptr                  
+0     0000a87a  __TI_dtors_ptr                    
+0     0000a87c  firstBUFrameReceived              
+0     0000a87d  secondBUFrameReceived             
+0     0000a87e  sequenceStarted                   
+0     0000a880  sampleCount                       
+0     0000a881  count                             
+0     0000a882  syncSignalReceived                
+0     0000a883  a                                 
+0     0000a884  calib                             
+0     0000a886  timer2Expired                     
+0     0000a887  gainAckReceived                   
+0     0000a888  retryCount                        
+0     0000a88a  _lock                             
+0     0000a88c  _unlock                           
 0     0000c000  Fapi_issueProgrammingCommand      
 0     0000c189  Fapi_initializeAPI                
 0     0000c303  Fapi_loopRegionForValue           
@@ -1084,9 +939,10 @@ page  address   name
 0     0000c9b8  __TI_STACK_END                    
 0     0000e000  rxFIFO0Msg                        
 0     0000e6e4  myADC0Results                     
-0     0000e6f6  frameCounter                      
-0     0000e6f7  error                             
-0     0000e6f8  cpuTimer1IntCount                 
+0     0000e6f6  wDemandSumCntr                    
+0     0000e6fa  frameCounter                      
+0     0000e6fb  error                             
+0     0000e6fc  cpuTimer1IntCount                 
 0     0000e700  runtimeVoltageData                
 0     0000e980  syncedVoltageData                 
 0     0000ebd8  Buffer                            
@@ -1094,42 +950,19 @@ page  address   name
 0     0000f3d8  storedFrames                      
 0     0000f7a8  rxMsg                             
 0     0000faf0  branchData                        
-0     0000fc00  i                                 
-0     0000fc01  k                                 
-0     0000fc02  vari                              
-0     0000fc03  Pri_Phase_RY                      
-0     0000fc04  Pri_Phase_YB                      
-0     0000fc05  Pri_Phase_BR                      
-0     0000fc06  Sec_Phase_RY                      
-0     0000fc07  Sec_Phase_YB                      
-0     0000fc08  Sec_Phase_BR                      
-0     0000fc09  countSample                       
-0     0000fc0a  avgSquare                         
-0     0000fc0c  rms                               
-0     0000fc0e  curr_square                       
-0     0000fc10  volt_square                       
-0     0000fc12  Vsum                              
-0     0000fc14  v_alpha                           
-0     0000fc16  v_beta                            
-0     0000fc18  last_sample_alpha                 
-0     0000fc1a  adc_r                             
-0     0000fc1c  adc_y                             
-0     0000fc1e  adc_b                             
-0     0000fc20  V_alpha_t                         
-0     0000fc22  V_beta_t                          
-0     0000fc24  V_alpha_next                      
-0     0000fc26  V_beta_next                       
-0     0000fc28  cross_product                     
-0     0000fc2a  theta_p                           
-0     0000fc2c  del_theta_p                       
-0     0000fc2e  timediff                          
-0     0000fc30  timeperiod                        
-0     0000fc32  kw_r                              
-0     0000fc34  kw_y                              
-0     0000fc36  kw_b                              
-0     0000fc38  kw_r_sec                          
-0     0000fc3a  kw_y_sec                          
-0     0000fc3c  kw_b_sec                          
+0     0000fc00  k                                 
+0     0000fc01  struct_size                       
+0     0000fc02  max_curr                          
+0     0000fc04  demand_chk_1sec                   
+0     0000fc05  demand_chk_1hr                    
+0     0000fc06  demand_chk_24hr                   
+0     0000fc07  dww_RMS_Current                   
+0     0000fc08  root                              
+0     0000fc09  pinstate                          
+0     0000fc0a  pinState                          
+0     0000fc0b  countSample                       
+0     0000fc0c  dwwMathBuff                       
+0     0000fc0e  sFlag                             
 0     0000fc40  Branch                            
 0     0000fcc0  address                           
 0     0000fcc2  datasize                          
@@ -1137,6 +970,7 @@ page  address   name
 0     0000fd4d  firstBUFrameData                  
 0     0000fd8d  retransmissionData                
 0     0000fdcd  secondBUFrameData                 
+0     0000fe0e  dw_CurrDemandSum                  
 0     00080000  code_start                        
 0     00080008  MCAN_msgRAMConfig                 
 0     000801ca  adcA1ISR                          
@@ -1156,139 +990,143 @@ page  address   name
 0     000811bd  initBranchRuntime                 
 0     00081261  processBUFrames                   
 0     000812ff  MCAN_readMsgRam                   
-0     00081397  processVoltageFrame               
-0     00081422  __c28xabi_divf                    
-0     000814aa  resetCANModule                    
-0     00081531  processBUBoardData                
-0     000815b0  transmitGainFrames                
-0     0008162e  myADC1_init                       
-0     000816ab  MCAN_getRxFIFOStatus              
-0     0008180b  copyRxFIFO                        
-0     0008187c  transmit                          
-0     000818ed  sendBUFrameAcknowledgment         
-0     0008195a  prepareFramesForTransmission      
-0     000819c4  sendCalibrationDataFormatVersion  
-0     00081a2e  calibDataUpdateFailAck            
-0     00081a96  calibDataUpdateSuccessAck         
-0     00081afe  erasedBank4Ack                    
-0     00081b66  maxRetriesExceeded                
-0     00081bce  writtenDefaultCalibrationValuesAck
-0     00081c36  SysCtl_getClock                   
-0     00081c9b  copyVoltageRxFIFO                 
-0     00081cf9  sendDiscoveryMessage              
-0     00081d56  startupfunc                       
-0     00081db2  MCAN_writeRxFIFOAck               
-0     00081e0c  writeDefaultCalibrationValues     
-0     00081e64  MCAN_writeMsgRam                  
-0     00081ebb  GPIO_setPadConfig                 
-0     00081f0d  adc_init                          
-0     00081f5f  findReadAndWriteAddress           
-0     00081fb0  MCAN_addStdMsgIDFilter            
-0     00081fff  frameTrackingTimerISR             
-0     0008204e  eraseBank4                        
-0     0008209c  initDIPSwitchGPIO                 
-0     000820ea  checkAddressChange                
-0     00082137  SysCtl_selectOscSource            
-0     000821c4  SysCtl_selectXTAL                 
-0     0008224f  PGA_setOffsetTrimPMOS             
-0     00082293  PGA_setOffsetTrimNMOS             
-0     000822d4  processBUSpecificMessage          
-0     00082313  ADC_setVREF                       
-0     00082351  eraseSectorOrFindEmptySector      
-0     0008238f  Interrupt_initModule              
-0     00082441  GPIO_setQualificationPeriod       
-0     0008247a  GPIO_setPinConfig                 
-0     000824b1  GPIO_setQualificationMode         
-0     000824e8  Interrupt_enable                  
-0     0008251f  configCPUTimer                    
-0     00082555  configureTimer2                   
-0     0008258a  initEPWM                          
-0     000825be  MCAN_enableIntr                   
-0     000825f1  MCAN_selectIntrLine               
-0     00082624  cpuTimer2ISR                      
-0     00082656  GPIO_setDirectionMode             
-0     00082687  __TI_decompress_lzss              
-0     00082714  initCPUTimers                     
-0     00082742  MCAN_txBufAddReq                  
-0     0008276e  __TI_auto_init_nobinit_nopinit    
-0     00082799  MCAN_enableIntrLine               
-0     000827eb  C$$EXIT                           
-0     000827eb  abort                             
-0     000827ed  exit                              
-0     00082814  sqrtf                             
-0     0008283b  SysCtl_selectXTALSingleEnded      
-0     00082860  readCANAddress                    
-0     00082956  __c28xabi_divi                    
-0     00082967  __c28xabi_modi                    
-0     00082a35  MCAN_clearNewDataStatus           
-0     00082a54  MCAN_isMemInitDone                
-0     00082a73  initFrameTracking                 
-0     00082ace  Interrupt_initVectorTable         
-0     00082aec  ASysCtl_setAnalogReferenceInternal
-0     00082b09  MCAN_getNewDataStatus             
-0     00082b26  memcpy                            
-0     00082be7  Device_initGPIO                   
-0     00082c01  MCAN_clearInterrupt               
-0     00082c1b  SysCtl_getLowSpeedClock           
-0     00082c35  handleDiscoveryProcess            
-0     00082c4f  resetFrameTrackingVariables       
-0     00082c82  MCAN_setOpMode                    
-0     00082ce6  handleGainRetransmission          
-0     00082de6  MCAN_getOpMode                    
-0     00082e42  _c_int00                          
-0     00082e9b  Interrupt_defaultHandler          
-0     00082f44  MCAN_clearIntrStatus              
-0     00082f6e  configureGPIO28                   
-0     00082f83  processDiscoveryAck               
-0     00083060  MCAN_getMsgObjSize                
-0     00083074  startDiscoveryTimer               
-0     000830ae  CPUTimer_setEmulationMode         
-0     000830c1  MCANIntrConfig                    
-0     000830d4  MCAN_getIntrStatus                
-0     000830e7  MCAN_getTxBufReqPend              
-0     000830fa  isVoltageDataComplete             
-0     00083130  resetDiscoveryFlags               
-0     0008318e  readDIPSwitch                     
-0     000831aa  INTERRUPT_init                    
-0     000831eb  initializePDUManager              
-0     000831f8  processGainAcknowledgment         
-0     00083204  _args_main                        
-0     00083210  startGainTransmissionRetry        
-0     0008321c  Board_init                        
-0     0008323d  syncReadWriteToWorking            
-0     00083248  ASYSCTL_init                      
-0     00083252  Interrupt_illegalOperationHandler 
-0     0008325c  Interrupt_nmiHandler              
-0     00083266  _register_unlock                  
-0     0008326a  _register_lock                    
-0     0008326e  _nop                              
-0     0008326f  syncVoltageData                   
-0     00083278  Example_Error                     
-0     00083280  __TI_decompress_none              
-0     000832b3  memset                            
-0     000832cc  __TI_zero_init                    
-0     000832d2  ADC_init                          
-0     000832d7  FMSTAT_Fail                       
-0     000832dc  __error__                         
-0     000832e1  Example_Done                      
-0     000832e5  adc_start_process                 
-0     000832e9  _system_pre_init                  
-0     000832eb  _system_post_cinit                
-0     00084354  __TI_Handler_Table_Base           
-0     0008435a  __TI_Handler_Table_Limit          
-0     0008435e  __TI_CINIT_Base                   
-0     00084366  __TI_CINIT_Limit                  
-0     00084366  __TI_CINIT_Warm                   
+0     00081397  dww_max_min_Calc                  
+0     0008142b  processVoltageFrame               
+0     000814b6  dww_demand_Calc                   
+0     0008153f  __c28xabi_divf                    
+0     000815c7  resetCANModule                    
+0     0008164e  processBUBoardData                
+0     000816cd  transmitGainFrames                
+0     0008174b  myADC1_init                       
+0     000817c8  MCAN_getRxFIFOStatus              
+0     00081928  copyRxFIFO                        
+0     00081999  transmit                          
+0     00081a0a  sendBUFrameAcknowledgment         
+0     00081a77  prepareFramesForTransmission      
+0     00081ae1  sendCalibrationDataFormatVersion  
+0     00081b4b  calibDataUpdateFailAck            
+0     00081bb3  calibDataUpdateSuccessAck         
+0     00081c1b  erasedBank4Ack                    
+0     00081c83  maxRetriesExceeded                
+0     00081ceb  writtenDefaultCalibrationValuesAck
+0     00081d53  SysCtl_getClock                   
+0     00081db8  copyVoltageRxFIFO                 
+0     00081e16  sendDiscoveryMessage              
+0     00081e73  startupfunc                       
+0     00081ecf  MCAN_writeRxFIFOAck               
+0     00081f29  writeDefaultCalibrationValues     
+0     00081f81  MCAN_writeMsgRam                  
+0     00081fd8  GPIO_setPadConfig                 
+0     0008202a  findReadAndWriteAddress           
+0     0008207b  MCAN_addStdMsgIDFilter            
+0     000820ca  frameTrackingTimerISR             
+0     00082119  eraseBank4                        
+0     00082167  initDIPSwitchGPIO                 
+0     000821b5  checkAddressChange                
+0     00082202  SysCtl_selectOscSource            
+0     0008228f  SysCtl_selectXTAL                 
+0     0008231a  PGA_setOffsetTrimPMOS             
+0     0008235e  PGA_setOffsetTrimNMOS             
+0     0008239f  processBUSpecificMessage          
+0     000823de  ADC_setVREF                       
+0     0008241c  eraseSectorOrFindEmptySector      
+0     0008245a  Interrupt_initModule              
+0     0008250c  GPIO_setQualificationPeriod       
+0     00082545  GPIO_setPinConfig                 
+0     0008257c  GPIO_setQualificationMode         
+0     000825b3  Interrupt_enable                  
+0     000825ea  configCPUTimer                    
+0     00082620  configureTimer2                   
+0     00082655  initEPWM                          
+0     00082689  MCAN_enableIntr                   
+0     000826bc  MCAN_selectIntrLine               
+0     000826ef  cpuTimer2ISR                      
+0     00082721  GPIO_setDirectionMode             
+0     00082752  __TI_decompress_lzss              
+0     000827df  adc_init                          
+0     0008280d  initCPUTimers                     
+0     0008283b  MCAN_txBufAddReq                  
+0     00082867  __TI_auto_init_nobinit_nopinit    
+0     00082892  MCAN_enableIntrLine               
+0     000828e4  C$$EXIT                           
+0     000828e4  abort                             
+0     000828e6  exit                              
+0     0008290d  _system_post_cinit                
+0     0008290e  sqrtf                             
+0     00082935  SysCtl_selectXTALSingleEnded      
+0     0008295a  dww_Loadper_Calc                  
+0     0008297f  readCANAddress                    
+0     00082a75  __c28xabi_divi                    
+0     00082a86  __c28xabi_modi                    
+0     00082b54  MCAN_clearNewDataStatus           
+0     00082b73  MCAN_isMemInitDone                
+0     00082b92  initFrameTracking                 
+0     00082bed  Interrupt_initVectorTable         
+0     00082c0b  ASysCtl_setAnalogReferenceInternal
+0     00082c28  MCAN_getNewDataStatus             
+0     00082c45  memcpy                            
+0     00082cd2  dww_timer                         
+0     00082d22  Device_initGPIO                   
+0     00082d3c  MCAN_clearInterrupt               
+0     00082d56  SysCtl_getLowSpeedClock           
+0     00082d70  handleDiscoveryProcess            
+0     00082d8a  resetFrameTrackingVariables       
+0     00082dbd  MCAN_setOpMode                    
+0     00082e21  handleGainRetransmission          
+0     00082f21  MCAN_getOpMode                    
+0     00082f7d  _c_int00                          
+0     00082fd6  Interrupt_defaultHandler          
+0     0008307f  MCAN_clearIntrStatus              
+0     000830a9  configureGPIO28                   
+0     000830be  processDiscoveryAck               
+0     0008319b  MCAN_getMsgObjSize                
+0     000831af  startDiscoveryTimer               
+0     000831e9  CPUTimer_setEmulationMode         
+0     000831fc  MCANIntrConfig                    
+0     0008320f  MCAN_getIntrStatus                
+0     00083222  MCAN_getTxBufReqPend              
+0     00083235  isVoltageDataComplete             
+0     0008326b  resetDiscoveryFlags               
+0     000832c9  readDIPSwitch                     
+0     000832e5  INTERRUPT_init                    
+0     00083326  initializePDUManager              
+0     00083333  adc_start_process                 
+0     0008333f  processGainAcknowledgment         
+0     0008334b  _args_main                        
+0     00083357  startGainTransmissionRetry        
+0     00083363  Board_init                        
+0     00083384  syncReadWriteToWorking            
+0     0008338f  ASYSCTL_init                      
+0     00083399  Interrupt_illegalOperationHandler 
+0     000833a3  Interrupt_nmiHandler              
+0     000833ad  _register_unlock                  
+0     000833b1  _register_lock                    
+0     000833b5  _nop                              
+0     000833b6  syncVoltageData                   
+0     000833bf  Example_Error                     
+0     000833c7  __TI_decompress_none              
+0     000833fa  memset                            
+0     00083413  __TI_zero_init                    
+0     00083419  ADC_init                          
+0     0008341e  FMSTAT_Fail                       
+0     00083423  __error__                         
+0     00083428  Example_Done                      
+0     0008342c  _system_pre_init                  
+0     00084476  __TI_Handler_Table_Base           
+0     0008447c  __TI_Handler_Table_Limit          
+0     00084480  __TI_CINIT_Base                   
+0     00084488  __TI_CINIT_Limit                  
+0     00084488  __TI_CINIT_Warm                   
 abs   00000200  __TI_STACK_SIZE                   
 abs   000007b7  RamfuncsLoadSize                  
 abs   000007b7  RamfuncsRunSize                   
 abs   0000c000  RamfuncsRunStart                  
 abs   0000c7b7  RamfuncsRunEnd                    
-abs   00083b40  RamfuncsLoadStart                 
-abs   000842f7  RamfuncsLoadEnd                   
+abs   00083c80  RamfuncsLoadStart                 
+abs   00084437  RamfuncsLoadEnd                   
 abs   ffffffff  __TI_pprof_out_hndl               
 abs   ffffffff  __TI_prof_data_size               
 abs   ffffffff  __TI_prof_data_start              
 n/a   UNDEFED   __c_args__                        
 
-[315 symbols]
+[260 symbols]

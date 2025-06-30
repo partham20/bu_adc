@@ -3,6 +3,68 @@
 
 "C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
  
-gmake[1]: 'adc_ex2_soc_epwm.out' is up to date.
+Building file: "../adc_ex2_soc_epwm.c"
+Invoking: C2000 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --vcu_support=vcrc -Ooff --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI" --include_path="D:/new/adc_ex2_soc_epwm" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00" --include_path="D:/new/adc_ex2_soc_epwm/device" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/driverlib/f28p55x/driverlib" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" --preinclude="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI/FlashTech_F28p55x_C28x.h" --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi --preproc_with_compile --preproc_dependency="adc_ex2_soc_epwm.d_raw" --include_path="D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg" --cmd_file="syscfg/board.opt" --cmd_file="syscfg/c2000ware_libraries.opt"  "../adc_ex2_soc_epwm.c"
+"..\s_board_adc.h", line 25: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_PIN_LED1" (declared at line 177 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"..\s_board_adc.h", line 26: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_CFG_LED1" (declared at line 179 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"../adc_ex2_soc_epwm.c", line 100: warning #551-D: variable "r" is used before its value is set
+"../adc_ex2_soc_epwm.c", line 133: warning #225-D: function "handleMissingFrames" declared implicitly
+"../adc_ex2_soc_epwm.c", line 141: warning #225-D: function "copyRxFIFO" declared implicitly
+"../adc_ex2_soc_epwm.c", line 47: warning #179-D: variable "lastBranchTransmission" was declared but never referenced
+Finished building: "../adc_ex2_soc_epwm.c"
+ 
+Building file: "../s_board_adc.c"
+Invoking: C2000 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --vcu_support=vcrc -Ooff --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI" --include_path="D:/new/adc_ex2_soc_epwm" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00" --include_path="D:/new/adc_ex2_soc_epwm/device" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/driverlib/f28p55x/driverlib" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" --preinclude="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI/FlashTech_F28p55x_C28x.h" --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi --preproc_with_compile --preproc_dependency="s_board_adc.d_raw" --include_path="D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg" --cmd_file="syscfg/board.opt" --cmd_file="syscfg/c2000ware_libraries.opt"  "../s_board_adc.c"
+"..\s_board_adc.h", line 25: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_PIN_LED1" (declared at line 177 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"..\s_board_adc.h", line 26: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_CFG_LED1" (declared at line 179 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"../s_board_adc.c", line 29: warning #174-D: external/internal linkage conflict with previous declaration
+"../s_board_adc.c", line 157 (col. 52): advice #2614-D: (Performance) Use --fp_mode=relaxed to enable TMU hardware support for FP division.
+"../s_board_adc.c", line 158 (col. 26): advice #2614-D: (Performance) Use --fp_mode=relaxed to enable TMU hardware support for sqrtf.
+Finished building: "../s_board_adc.c"
+ 
+Building file: "../board_module.c"
+Invoking: C2000 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --vcu_support=vcrc -Ooff --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI" --include_path="D:/new/adc_ex2_soc_epwm" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00" --include_path="D:/new/adc_ex2_soc_epwm/device" --include_path="C:/ti/c2000/C2000Ware_5_03_00_00/driverlib/f28p55x/driverlib" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" --preinclude="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI/FlashTech_F28p55x_C28x.h" --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi --preproc_with_compile --preproc_dependency="board_module.d_raw" --include_path="D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg" --cmd_file="syscfg/board.opt" --cmd_file="syscfg/c2000ware_libraries.opt"  "../board_module.c"
+"..\s_board_adc.h", line 25: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_PIN_LED1" (declared at line 177 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"..\s_board_adc.h", line 26: warning #48-D: incompatible redefinition of macro "DEVICE_GPIO_CFG_LED1" (declared at line 179 of "D:/new/adc_ex2_soc_epwm/device/device.h")
+"../board_module.c", line 136: warning #225-D: function "syncReadWriteToWorking" declared implicitly
+"../board_module.c", line 137: warning #225-D: function "calibDataUpdateSuccessAck" declared implicitly
+"../board_module.c", line 141: warning #225-D: function "calibDataUpdateFailAck" declared implicitly
+"../board_module.c", line 255: warning #225-D: function "initializePDUManager" declared implicitly
+"../board_module.c", line 266: warning #179-D: variable "i" was declared but never referenced
+"../board_module.c", line 363: warning #225-D: function "syncReadWriteToWorking" declared implicitly
+"../board_module.c", line 374: warning #225-D: function "syncReadWriteToWorking" declared implicitly
+"../board_module.c", line 393: warning #225-D: function "testGPIO" declared implicitly
+"../board_module.c", line 396: warning #225-D: function "testCAN" declared implicitly
+"../board_module.c", line 399: warning #225-D: function "testFlash" declared implicitly
+"../board_module.c", line 405: warning #161-D: declaration is incompatible with previous "testGPIO" (declared at line 393)
+"../board_module.c", line 418: warning #161-D: declaration is incompatible with previous "testCAN" (declared at line 396)
+"../board_module.c", line 433: warning #161-D: declaration is incompatible with previous "testFlash" (declared at line 399)
+"../board_module.c", line 594: warning #62-D: integer operation result is out of range
+"../board_module.c", line 576 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 576 (col. 9): advice #2614-D: (Performance) Use --fp_mode=relaxed to enable TMU hardware support for FP division.
+"../board_module.c", line 576 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 576 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 576 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 580 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 580 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 580 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+"../board_module.c", line 580 (col. 9): advice #3195-D: (Performance) EABI double precision is 64-bits as opposed to 32-bits for COFF. Consider changing doubles to floats for improved performance in FPU32-mode.
+Finished building: "../board_module.c"
+ 
+Building target: "adc_ex2_soc_epwm.out"
+Invoking: C2000 Linker
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --vcu_support=vcrc -Ooff --preinclude="C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/include/FlashAPI/FlashTech_F28p55x_C28x.h" --define=DEBUG --define=_FLASH --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"adc_ex2_soc_epwm.map" --heap_size=0x100 --stack_size=0x200 --warn_sections -i"C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib" -i"C:/ti/c2000/C2000Ware_5_03_00_00" -i"D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" --reread_libs --define=_FLASH --diag_wrap=off --display_error_number --xml_link_info="adc_ex2_soc_epwm_linkInfo.xml" --entry_point=code_start --rom_model -o "adc_ex2_soc_epwm.out" "./adc_ex2_soc_epwm.obj" "./syscfg/board.obj" "./syscfg/c2000ware_libraries.obj" "./board_module.obj" "./bu_runtime.obj" "./can_module.obj" "./dww_power.obj" "./flash_module.obj" "./flashapi_128bit_programming.obj" "./runtime.obj" "./s_board_adc.obj" "./timer_module.obj" "./utilities.obj" "./device/device.obj" "./device/f28p55x_codestartbranch.obj" "../28p55x_flash_api_lnk.cmd" "../FAPI_F28P55x_EABI_v4.00.00.lib" "../driverlib.lib"  -l"C:/ti/c2000/C2000Ware_5_03_00_00/libraries/flash_api/f28p55x/lib/FAPI_F28P55x_EABI_v4.00.00.lib" -lc2000ware_libraries.cmd.genlibs -llibc.a 
+<Linking>
+Finished building target: "adc_ex2_soc_epwm.out"
+ 
+echo "========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) ============="
+"========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) ============="
+if 0 == 1  C:/ti/ccs1281/ccs/tools/node/node.exe "C:/ti/c2000/C2000Ware_5_03_00_00/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js"  "C:/ti/c2000/C2000Ware_5_03_00_00/utilities/clb_tool/clb_syscfg/" "D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg" "D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg/clb.dot"
+if 0 == 1  mkdir "D:/new/adc_ex2_soc_epwm/CPU1_FLASH/diagrams"
+if 0 == 1  C:/ti/ccs1281/ccs/tools/node/node.exe "C:/ti/c2000/C2000Ware_5_03_00_00/driverlib/.meta/generate_diagrams.js" "C:/ti/c2000/C2000Ware_5_03_00_00" "D:/new/adc_ex2_soc_epwm/CPU1_FLASH/diagrams" "D:/new/adc_ex2_soc_epwm/CPU1_FLASH/syscfg"
+ 
 
 **** Build Finished ****

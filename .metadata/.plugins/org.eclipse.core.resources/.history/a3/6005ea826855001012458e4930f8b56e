@@ -4,9 +4,7 @@
 //
 #include "s_board_adc.h"
 
-int k;
-
-signed int myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
+uint32_t myADC0Results[NUM_CHANNELS];   // Buffer for raw ADC results
 
 // Removed unused index and bufferFull variables
 
@@ -114,8 +112,8 @@ __interrupt void adcA1ISR(void)
     /*
      * ADC Conversion for the Input, Output and Ground Current
      */
-myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0) - 2010);
-   myADC0Results[1]  = (unsigned int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER2) - 2048;
+myADC0Results[0]  = (signed int)(ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0) - 2048);
+   myADC0Results[1]  = (signed int)ADC_readResult(ADCERESULT_BASE, ADC_SOC_NUMBER2) - 2048;
    myADC0Results[2]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1) - 2048;
    myADC0Results[3]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2) - 2048;
    myADC0Results[4]  = (signed int)ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER3) - 2048;
@@ -206,14 +204,11 @@ void adc_init()
        //initEPWM();
 
        sampleCount = 0;
-
-//       for(i = 0; i < PHASE_CURR; i++)
-//       {
-//           dwSumPhaseCurr[i] = 0;
-//       }
-//
-
-       for(i = 0; i < 3; i++)
+       for(i = 0; i < PHASE_CURR; i++)
+       {
+           dwSumPhaseCurr[i] = 0;
+       }
+       for(i = 0; i < PHASE_VOLT; i++)
        {
            dwSumPhaseVolt[i] = 0;
        }
@@ -222,10 +217,10 @@ void adc_init()
         * Added for the kw calculation
         */
 
-//       for(i = 0; i < 5; i++)
-//       {
-//           dwSumPhaseWatt[i] = 0;
-//       }
+       for(i = 0; i < 5; i++)
+       {
+           dwSumPhaseWatt[i] = 0;
+       }
 
        EINT;
        ERTM;
@@ -239,14 +234,6 @@ void adc_start_process ()
 {
     //ADC functions
             a++;
-
-             dww_Loadper_Calc();
-             dww_max_min_Calc();
-             dww_timer();
-             dww_demand_Calc();
-
-
-
 
                     // Additional function can be placed here.
 

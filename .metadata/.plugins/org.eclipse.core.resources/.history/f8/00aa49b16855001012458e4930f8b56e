@@ -20,13 +20,13 @@ C_SRCS += \
 ./syscfg/board.c \
 ./syscfg/c2000ware_libraries.c \
 ../board_module.c \
-../bu_adc.c \
 ../bu_runtime.c \
 ../can_module.c \
 ../dww_power.c \
 ../flash_module.c \
 ../flashapi_128bit_programming.c \
 ../runtime.c \
+../s_board_adc.c \
 ../timer_module.c \
 ../utilities.c 
 
@@ -44,13 +44,13 @@ C_DEPS += \
 ./syscfg/board.d \
 ./syscfg/c2000ware_libraries.d \
 ./board_module.d \
-./bu_adc.d \
 ./bu_runtime.d \
 ./can_module.d \
 ./dww_power.d \
 ./flash_module.d \
 ./flashapi_128bit_programming.d \
 ./runtime.d \
+./s_board_adc.d \
 ./timer_module.d \
 ./utilities.d 
 
@@ -63,13 +63,13 @@ OBJS += \
 ./syscfg/board.obj \
 ./syscfg/c2000ware_libraries.obj \
 ./board_module.obj \
-./bu_adc.obj \
 ./bu_runtime.obj \
 ./can_module.obj \
 ./dww_power.obj \
 ./flash_module.obj \
 ./flashapi_128bit_programming.obj \
 ./runtime.obj \
+./s_board_adc.obj \
 ./timer_module.obj \
 ./utilities.obj 
 
@@ -91,13 +91,13 @@ OBJS__QUOTED += \
 "syscfg\board.obj" \
 "syscfg\c2000ware_libraries.obj" \
 "board_module.obj" \
-"bu_adc.obj" \
 "bu_runtime.obj" \
 "can_module.obj" \
 "dww_power.obj" \
 "flash_module.obj" \
 "flashapi_128bit_programming.obj" \
 "runtime.obj" \
+"s_board_adc.obj" \
 "timer_module.obj" \
 "utilities.obj" 
 
@@ -116,13 +116,13 @@ C_DEPS__QUOTED += \
 "syscfg\board.d" \
 "syscfg\c2000ware_libraries.d" \
 "board_module.d" \
-"bu_adc.d" \
 "bu_runtime.d" \
 "can_module.d" \
 "dww_power.d" \
 "flash_module.d" \
 "flashapi_128bit_programming.d" \
 "runtime.d" \
+"s_board_adc.d" \
 "timer_module.d" \
 "utilities.d" 
 
@@ -137,13 +137,13 @@ C_SRCS__QUOTED += \
 "./syscfg/board.c" \
 "./syscfg/c2000ware_libraries.c" \
 "../board_module.c" \
-"../bu_adc.c" \
 "../bu_runtime.c" \
 "../can_module.c" \
 "../dww_power.c" \
 "../flash_module.c" \
 "../flashapi_128bit_programming.c" \
 "../runtime.c" \
+"../s_board_adc.c" \
 "../timer_module.c" \
 "../utilities.c" 
 
